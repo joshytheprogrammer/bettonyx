@@ -6,7 +6,7 @@
       <!-- {{ matches }} -->
       <div v-for="(dayMatches, date) in groupedMatches" :key="date" class="py-2">
         <div class="flex justify-between py-1 px-2">
-          <h3 class="font-normal text-lg">
+          <h3 class="font-normal text-sm md:text-lg">
             {{
               new Date(date).toLocaleString('en-US', {weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' })
             }}
@@ -25,7 +25,7 @@
             <span class="text-xs">x</span>
             <span>{{ reverseEngineerID(match.teamB.id) }}</span>
           </div>
-          <div class="flex space-x-[2px]">
+          <div class="flex space-x-[2px] text-xs md:text-base">
             <button @click="addBet(match, 'teamA')" class="w-14 px-2 py-2 bg-secondary-800 hover:bg-secondary-900 text-white rounded-tl-md rounded-bl-md">{{ match.teamA.odds }}</button>
             <button @click="addBet(match, 'draw')" class="w-14 px-2 py-2 bg-secondary-800 hover:bg-secondary-900 text-white ">{{ match.drawOdds }}</button>
             <button @click="addBet(match, 'teamB')" class="w-14 px-2 py-2 bg-secondary-800 hover:bg-secondary-900 text-white rounded-tr-md rounded-br-md">{{ match.teamB.odds }}</button>

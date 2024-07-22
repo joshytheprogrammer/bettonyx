@@ -1,5 +1,5 @@
 <template>
-  <section class="register w-full py-8 rounded-xl lg:shadow-lg" id="login">
+  <section class="register w-full py-8 px-4 rounded-xl lg:shadow-lg" id="login">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
       <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight ">Claim your winnings </h2>
     </div>
@@ -9,26 +9,26 @@
         <div>
           <label class="block text-sm font-medium leading-6 ">Phone</label>
           <div class="mt-2">
-            <input type="text" autocomplete="phone" required class="block w-full rounded-md border-0 p-1.5 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-secondary-800 sm:text-sm sm:leading-6" v-model="user.phone">
+            <input type="text" autocomplete="phone" required class="block w-full rounded-md border-0 p-1.5 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-secondary-800 text-xs sm:text-sm sm:leading-6" v-model="user.phone" placeholder="Enter your phone number">
           </div>
         </div>
         <div>
           <label class="block text-sm font-medium leading-6 ">Password</label>
           <div class="mt-2">
-            <input type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 p-1.5  outline-none shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-secondary-800 sm:text-sm sm:leading-6" v-model="user.password">
+            <input type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 p-1.5  outline-none shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-secondary-800 text-xs sm:text-sm sm:leading-6" v-model="user.password" placeholder="Enter your password">
           </div>
         </div>
         <div>
           <button
             type="submit"
-            class="flex w-full justify-center rounded-md bg-secondary-800 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-secondary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-800"
+            class="flex w-full justify-center rounded-md bg-secondary-800 px-3 py-4 md:py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-secondary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-800"
             v-if="!loading"
           >
             Login
           </button>
           <button
             type="button"
-            class="flex w-full justify-center items-center rounded-md bg-secondary-800 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-secondary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-800 cursor-not-allowed " 
+            class="flex w-full justify-center items-center rounded-md bg-secondary-800 px-3 py-4 md:py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-secondary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-800 cursor-not-allowed " 
             disabled
             v-else
           >

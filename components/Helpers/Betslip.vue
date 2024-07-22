@@ -59,12 +59,12 @@
       </div>
     </div>
     <div class="space-y-4" v-else>
-      <p class="text-xs"> To place a bet, click on the odds. Or insert a booking code</p>
-      <div class="flex flex-col gap-2">
+      <p class="text-xs leading-6"> To place a bet, click on the odds. Or insert a booking code</p>
+      <div class="flex flex-col gap-4 md:gap-2">
         <UInput placeholder="Ticket Code" />
-        <button class="w-full bg-gray-500 text-slate-200 cursor-not-allowed rounded-md text-sm py-2">Load Ticket</button>
+        <button class="w-full bg-gray-500 text-slate-200 cursor-not-allowed rounded-md text-sm py-4">Load Ticket</button>
       </div>
-      <p class="text-xs text-slate-400 dark:text-slate-300">A ticket code enables one to transfer a betslip between different devices.</p>
+      <p class="text-xs leading-6 text-slate-400 dark:text-slate-300">A ticket code enables one to transfer a betslip between different devices.</p>
     </div>
   </div>
 </template>
