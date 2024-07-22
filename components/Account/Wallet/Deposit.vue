@@ -1,7 +1,6 @@
 <template>
   <div class="flex flex-col pt-4" >
     <h2 class="text-2xl font-medium leading-9 tracking-tight ">Deposit Slip</h2>
-
     <div class="py-4">
       <form v-if="!verify" class="flex flex-col gap-4" @submit.prevent="submit">
         <input class="w-60 px-1 lg:px-2 h-10 outline-none border-0 rounded-md shadow-sm  ring-1 ring-inset ring-gray-300 dark:ring-gray-800 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-secondary-800 sm:text-sm sm:leading-6" type="text" placeholder="Enter deposit amount" v-model="amount">

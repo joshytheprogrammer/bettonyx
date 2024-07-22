@@ -6,15 +6,17 @@ export default defineEventHandler(async (event) => {
     Authorization: 'Bearer '+config.paystackSecretKey,
     'Content-Type': 'application/json'
   }
+
+  let url = config.callbackUrl;
    
   let bodyContent = JSON.stringify({
     "email": rawBody.formData.email,
     "amount": rawBody.formData.amount*100,
     "reference": rawBody.formData.reference,
-    "currency": 'NGN', // T0 be changed
-    "callback_url": config.callBackUrl+'/account/my/wallet?action=deposit&verify=true&amount='+rawBody.formData.amount,
+    "currency": 'NGN',
+    "callback_url": url+'/account/my/wallet?action=deposit&verify=true&amount='+rawBody.formData.amount,
     "metadata": {
-      "cancel_action": ''
+      "cancel_action": config.callbackUrl+'/account/my/wallet?action=deposit&verify=true&amount='+rawBody.formData.amount+'&reference='+rawBody.formData.reference
     }
   });
   
