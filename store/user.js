@@ -8,8 +8,8 @@ export const useUserStore = defineStore('user', {
     },
     userBalance: 0,
     auth: {
-      isAuthenticated: useCookie('isAuthenticated').value,
-      uid: useCookie('uid').value 
+      isAuthenticated: useCookie('isAuthenticated').value || false,
+      uid: useCookie('uid').value || null
     }
   }),
   actions: {
