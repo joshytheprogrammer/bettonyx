@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
     "amount": rawBody.formData.amount*100,
     "reference": rawBody.formData.reference,
     "currency": 'NGN', // T0 be changed
-    "callback_url": 'http://localhost:3000/account/my/wallet?action=deposit&verify=true&amount='+rawBody.formData.amount,
+    "callback_url": config.callBackUrl+'/account/my/wallet?action=deposit&verify=true&amount='+rawBody.formData.amount,
     "metadata": {
       "cancel_action": ''
     }
