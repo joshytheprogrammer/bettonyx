@@ -2,7 +2,12 @@ import { initializeApp, cert, getApps } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
 
 // Parse the service account JSON from the environment variable
-const firebaseServerAccounts = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS);
+let firebaseServerAccounts = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS);
+
+firebaseServerAccounts = JSON.stringify(firebaseServerAccounts)
+  .replace(/\\/g, '\\\\')  // Escape backslashes
+  .replace(/"/g, '\\"')    // Escape double quotes
+  .replace(/\n/g, '\\n');  // Escape new lines
 
 let app;
 if (getApps().length === 0) {
