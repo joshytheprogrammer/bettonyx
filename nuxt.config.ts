@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     public: {
       baseUrl: ''
     },
+    googleApplicationCredentials: ''
   },
   modules: ["@nuxt/ui", "@pinia/nuxt", "nuxt-vuefire"],
   vuefire: {
