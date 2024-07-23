@@ -51,10 +51,10 @@
           <AuthNavLogin />
         </div> -->
         <div class="links flex flex-col gap-4 border border-primary-800 px-4 py-8">
-          <NuxtLink to="">Profile</NuxtLink>
-          <NuxtLink to="">Wallet</NuxtLink>
-          <NuxtLink to="">Bet History</NuxtLink>
-          <NuxtLink to="">Transaction History</NuxtLink>
+          <NuxtLink to="/account/my">Profile</NuxtLink>
+          <NuxtLink to="/account/my/wallet">Wallet</NuxtLink>
+          <NuxtLink to="/account/my/bet_history">Bet History</NuxtLink>
+          <NuxtLink to="/account/my/wallet">Transaction History</NuxtLink>
         </div>
         
         <button @click="toggleMenu" class="bg-red-600 rounded-md px-4 py-2 ">Close</button>
@@ -67,7 +67,7 @@
 <script setup>
 import { useUserStore } from "@/store/user";
 
-
+const route = useRoute();
 const userStore = useUserStore();
 
 const menuShowing = ref(false);
@@ -75,6 +75,10 @@ const menuShowing = ref(false);
 function toggleMenu() {
   menuShowing.value = !menuShowing.value
 }
+
+watch(() => route.fullPath, () => {
+  menuShowing.value = false;
+});
 
 const colorMode = useColorMode()
 
