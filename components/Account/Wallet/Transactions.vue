@@ -8,7 +8,7 @@
       No transactions made.
     </p>
 
-    <div v-else class="w-full h-96 overflow-auto border rounded-md shadow-sm">
+    <div v-else class="w-full md:h-96 md:overflow-auto border rounded-md shadow-sm">
       <div v-for="item in transactions" :key="item.id">
         <div v-if="item.type === 'deposit'" class="py-4 px-5 flex items-center justify-between gap-8 border-b border-black dark:border-white">
           <div class="space-y-2">

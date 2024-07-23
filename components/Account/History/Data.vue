@@ -1,6 +1,6 @@
 <template>
   <div class="w-full">
-    <div class="flex flex-col gap-4 h-[400px] overflow-auto">
+    <div class="flex flex-col gap-4 md:h-[400px] md:overflow-auto">
       <div class="m-1" v-for="item in combinedBets" :key="item.id">
         <p class="py-2">{{ formatDate(item.timestamp) }}</p>
         <div :class="['flex justify-between text-white uppercase p-2', getStatusClass(item.status)]">
