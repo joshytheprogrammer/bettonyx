@@ -91,8 +91,6 @@ await getDoc(doc(db, 'users', uid))
   const { role, createdAt, ...rest } = doc.data();
   user = {id: doc.id, ...rest}
   originalUser = { ...user };
-
-  userStore.setUserData({email: user.email, phone: user.phone})
 })
 .catch((e) => {
   error.value = true
@@ -100,6 +98,10 @@ await getDoc(doc(db, 'users', uid))
 }).finally(() => {
   loading.value = false
 });
+
+onMounted(async () => {
+  await userStore.setUserData({email: user.email, phone: user.phone})
+})
 
 function enableField(field) {
   if(field == 'lastName'){
