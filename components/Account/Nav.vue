@@ -11,7 +11,7 @@
         <template #panel>
           <div class="p-4">
             <h2 class="pb-4 hover:text-black dark:hover:text-white"> You are about to terminate your session</h2>
-            <UButton color="red" label="Proceed" @click="logout" class="text-xs p-4" />
+            <UButton color="red" label="Proceed" @click="logout" class="text-xs p-4 md:p-0" />
           </div>
         </template>
       </UPopover>
