@@ -1,9 +1,9 @@
 <template>
   <div >
-    <NuxtLink @click.prevent="isAddAccountOpen = true" class="w-fit h-fit block py-4 underline cursor-pointer" >Create withdrawal account</NuxtLink>
+    <NuxtLink @click.prevent="isAddAccountOpen = true" class="w-fit h-fit block py-4 underline cursor-pointer text-sm md:text-base" >Create withdrawal account</NuxtLink>
     <UModal v-model="isAddAccountOpen">
       <div class="p-4">
-        <h2 class="text-2xl pb-8 font-medium" >Account adding form</h2>
+        <h2 class="text-base md:text-2xl pb-8 font-medium" >Account adding form</h2>
         <AccountHelpersAccountAddingForm @close-modal="isAddAccountOpen = false" />
       </div>
     </UModal>

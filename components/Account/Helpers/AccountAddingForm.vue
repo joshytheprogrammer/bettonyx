@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-4 items-start">
+  <div class="flex flex-col gap-4 items-start leading-8">
     <UAlert
       @close="closeAlert"
       v-if="alertShowing"
@@ -24,7 +24,7 @@
       placeholder="Select bank" 
       />
       
-      <UButton :loading="loading" class="bg-secondary-900 w-fit"type="submit">Add account</UButton>
+      <UButton :loading="loading" class="bg-secondary-900 w-fit text-xs p-4" type="submit">Add account</UButton>
     </form>
   </div>
 </template>

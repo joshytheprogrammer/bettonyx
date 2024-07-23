@@ -4,7 +4,7 @@
     <p v-if="loading">Loading...</p>
     <div class="flex text-base" v-if="events">
       <div v-for="item in events" @click="router.push('/events/'+item.id)" class="cursor-pointer hover:bg-secondary-900 hover:text-white w-full px-2 py-4" >
-        <span>{{ item.name }}</span>
+        <span class="text-sm md:text-base" >{{ item.name }}</span>
       </div>
     </div>
   </div>

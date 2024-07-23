@@ -6,12 +6,12 @@
     <!-- <NuxtLink class="" to="/account/my/transactions">Transactions</NuxtLink> -->
     <div class=" px-4 py-2 hover:bg-red-800  hover:text-white" >
       <UPopover class="w-full">
-        <p class="logout dark:text-white  cursor-pointer"  >Logout</p>
+        <p class="logout dark:text-white cursor-pointer"  >Logout</p>
 
         <template #panel>
           <div class="p-4">
             <h2 class="pb-4 hover:text-black dark:hover:text-white"> You are about to terminate your session</h2>
-            <UButton color="red" label="Proceed" @click="logout" />
+            <UButton color="red" label="Proceed" @click="logout" class="text-xs p-4" />
           </div>
         </template>
       </UPopover>

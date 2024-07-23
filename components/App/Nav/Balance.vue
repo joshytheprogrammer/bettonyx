@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center pr-4">
-    <NuxtLink to="/account/my/wallet" class="mr-4 font-bold text-lg border-b-2 border-secondary-400 text-white">
+    <NuxtLink to="/account/my/wallet" class="mr-4 font-bold text-base md:text-lg border-b-2 border-secondary-400 text-white">
       {{ 
         new Intl.NumberFormat('en-NG', {style: 'currency', currency: 'NGN'}).format(userStore.getBalance)
       }}

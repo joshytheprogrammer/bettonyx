@@ -60,7 +60,7 @@
             class="block w-full rounded-md border-0 py-1.5 pl-1.5 pr-20 text-black dark:text-white shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-800 text-xs sm:text-sm sm:leading-6 disabled:cursor-not-allowed" />
         </div>
       </div>
-      <UButton type="submit" label="Update"  />
+      <UButton type="submit" label="Update" class="text-xs p-4" />
     </form>
   </div>
 </template>
