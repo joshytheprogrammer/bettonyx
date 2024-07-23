@@ -3,7 +3,7 @@
     <div class="flex flex-col gap-4 h-[400px] overflow-auto">
       <div class="m-1" v-for="item in combinedBets" :key="item.id">
         <p class="py-2">{{ formatDate(item.timestamp) }}</p>
-        <div class="flex justify-between bg-slate-600 text-white uppercase p-2">
+        <div :class="['flex justify-between text-white uppercase p-2', getStatusClass(item.status)]">
           <span> {{ item.type }} </span>
           <span>{{ item.status }}</span>
         </div>
@@ -150,6 +150,19 @@ function reverseEngineerID(generatedID) {
   const namePart = generatedID.replace(/-[\da-f]+$/, "").split("-");
   const formattedName = namePart.map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
   return formattedName;
+}
+
+function getStatusClass(status) {
+  switch (status) {
+    case 'won':
+      return 'bg-green-700';
+    case 'lost':
+      return 'bg-red-700';
+    case 'pending':
+      return 'bg-slate-700';
+    default:
+      return 'bg-slate-700';
+  }
 }
 </script>
 

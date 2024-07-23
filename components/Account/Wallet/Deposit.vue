@@ -1,11 +1,11 @@
 <template>
   <div class="flex flex-col pt-4" >
-    <h2 class="text-2xl font-medium leading-9 tracking-tight ">Deposit Slip</h2>
+    <h2 class="md:text-2xl text-lg font-medium leading-9 tracking-tight ">Deposit Slip</h2>
     <div class="py-4">
       <form v-if="!verify" class="flex flex-col gap-4" @submit.prevent="submit">
-        <input class="w-60 px-1 lg:px-2 h-10 outline-none border-0 rounded-md shadow-sm  ring-1 ring-inset ring-gray-300 dark:ring-gray-800 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-secondary-800 sm:text-sm sm:leading-6" type="text" placeholder="Enter deposit amount" v-model="amount">
+        <UInput class="text-xs" type="text" placeholder="Enter deposit amount" v-model="amount" />
         <div class="flex justify-between items-center">
-          <UButton :loading="loading" class="bg-secondary-900 w-fit"type="submit">Deposit</UButton>
+          <UButton :loading="loading" class="bg-secondary-900 w-fit py-4 px-5"type="submit">Deposit</UButton>
           <NuxtLink to="/account/my/wallet" class="text-red-800 underline text-sm" >Close</NuxtLink>
         </div>
       </form>

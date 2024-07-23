@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col gap-4 items-start py-4">
-    <h2 class="text-2xl font-medium leading-9 tracking-tight mb-2">Transaction History</h2>
+    <h2 class="md:text-2xl text-lg font-medium leading-9 tracking-tight mb-2">Transaction History</h2>
     
     <p v-if="loading">Loading...</p>
     <p v-else-if="error">An error occurred</p>
@@ -12,10 +12,10 @@
       <div v-for="item in transactions" :key="item.id">
         <div v-if="item.type === 'deposit'" class="py-4 px-5 flex items-center justify-between gap-8 border-b border-black dark:border-white">
           <div class="space-y-2">
-            <h3 class="text-xl font-semibold">Deposit</h3>
-            <p class="text-sm font-normal">TNB-{{ item.id }}</p>
+            <h3 class="text-base md:text-sm font-semibold">Deposit</h3>
+            <p class="text-xs md:text-sm  font-normal">TNB-{{ item.id }}</p>
           </div>
-          <p class="text-secondary-900 dark:text-secondary-600 text-sm font-normal">
+          <p class="text-secondary-900 dark:text-secondary-600 text-xs md:text-sm  font-normal">
             <span>+</span>
             {{
               new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(item.amount)
@@ -24,8 +24,8 @@
         </div>
         <div v-if="item.type === 'withdraw'" class="py-4 px-5 flex items-center justify-between gap-8 border-b border-black dark:border-white">
           <div class="space-y-2">
-            <h3 class="text-xl font-semibold">Withdrawal</h3>
-            <p class="text-sm font-normal">TNB-{{ item.id }}</p>
+            <h3 class="text-base md:text-sm font-semibold">Withdrawal</h3>
+            <p class="text-xs md:text-sm  font-normal">TNB-{{ item.id }}</p>
           </div>
           <p class="text-red-900 dark:text-red-600 text-sm font-normal">
             <span>-</span>
@@ -36,10 +36,10 @@
         </div>
         <div v-if="item.type === 'bet_hold'" class="py-4 px-5 flex items-center justify-between gap-8 border-b border-black dark:border-white">
           <div class="space-y-2">
-            <h3 class="text-xl font-semibold">Bet Hold</h3>
-            <p class="text-sm font-normal">TNB-{{ item.id }}</p>
+            <h3 class="text-base md:text-sm font-semibold">Bet Hold</h3>
+            <p class="text-xs md:text-sm  font-normal">TNB-{{ item.id }}</p>
           </div>
-          <p class="text-red-900 dark:text-red-600 text-sm font-normal">
+          <p class="text-red-900 dark:text-red-600 text-xs md:text-sm  font-normal">
             <span>-</span>
             {{
               new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(item.amount)
@@ -48,10 +48,10 @@
         </div>
         <div v-if="item.type === 'bet_payout'" class="py-4 px-5 flex items-center justify-between gap-8 border-b border-black dark:border-white">
           <div class="space-y-2">
-            <h3 class="text-xl font-semibold">Bet Payout</h3>
-            <p class="text-sm font-normal">TNB-{{ item.id }}</p>
+            <h3 class="text-base md:text-sm font-semibold">Bet Payout</h3>
+            <p class="text-xs md:text-sm  font-normal">TNB-{{ item.id }}</p>
           </div>
-          <p class="text-secondary-900 dark:text-secondary-600 text-sm font-normal">
+          <p class="text-secondary-900 dark:text-secondary-600 text-xs md:text-sm  font-normal">
             <span>+</span>
             {{
               new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(item.amount)

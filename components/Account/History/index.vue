@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-col-reverse gap-8 justify-start rounded-md px-4 py-6 bg-secondary-900 text-white" >
+  <div class="flex flex-col-reverse gap-8 justify-start rounded-md px-4 py-6 bg-secondary-700 text-white" >
     <div class="flex items-center">
-      <p class="mr-8 font-bold text-3xl text-white">
+      <p class="mr-8 font-bold text-lg md:text-3xl text-white">
         {{ 
           new Intl.NumberFormat('en-NG', {style: 'currency', currency: 'NGN'}).format(balance)
         }}
@@ -17,7 +17,7 @@
       </button>
     </UTooltip>
     </div>
-    <div class="uppercase text-left text-lg font-bold">
+    <div class="uppercase text-left text-base md:text-lg font-bold">
       <h1 class="" >Holding Account</h1>
     </div>
   </div>

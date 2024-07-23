@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col items-start justify-start gap-4">
-    <h2 class="text-2xl pt-8 pb-4 font-medium underline decoration-secondary-900 dark:decoration-secondary-600 underline-offset-8	decoration-2 text-gray-900 dark:text-gray-200">Your Withdrawal Accounts</h2>
+    <h2 class="text-lg md:text-2xl pt-8 pb-4 font-medium underline leading-8 decoration-secondary-900 dark:decoration-secondary-600 underline-offset-8	decoration-2 text-gray-900 dark:text-gray-200">Your Withdrawal Accounts</h2>
     <p v-if="loading">Loading...</p>
     <p v-else-if="error">An error occurred</p>
     <div v-else class="text-base font-medium leading-6">
@@ -9,7 +9,7 @@
       </p>
       <div v-else class="grid gap-8 grid-cols-1 md:grid-cols-2">
         <div v-for="item in withdrawal_accounts" :id="item.id" class="bg-secondary-700 text-white dark:bg-secondary-950  rounded-md flex justify-between items-center gap-8 px-8 py-4">
-          <div class="space-y-2">
+          <div class="md:space-y-2 space-y-4">
             <h2 class="text-base font-semibold" >{{ item.bank.name }}</h2>
             <p class="text-sm font-normal uppercase" >{{ item.name }}</p>
             <p class="text-sm font-normal">{{ item.number.slice(0, 3) + '****' + item.number.slice(7) }}</p>
