@@ -9,9 +9,9 @@
       </p>
       <div v-else class="grid gap-8 grid-cols-1 md:grid-cols-2">
         <div v-for="item in withdrawal_accounts" :id="item.id" class="bg-secondary-700 text-white dark:bg-secondary-950  rounded-md flex justify-between items-center gap-8 px-8 py-4">
-          <div class="md:space-y-2 space-y-4">
+          <div class="md:space-y-2 space-y-4 leading-8">
             <h2 class="text-sm font-semibold" >{{ item.bank.name }}</h2>
-            <p class="text-xs md:text-sm leading-8 font-normal uppercase" >{{ item.name }}</p>
+            <p class="text-xs md:text-sm font-normal uppercase" >{{ item.name }}</p>
             <p class="text-sm font-normal">{{ item.number.slice(0, 3) + '****' + item.number.slice(7) }}</p>
           </div>
           <button @click="deleteItem(item.id)" class="bg-red-500 dark:bg-red-900 py-2 px-3 h-fit w-fit rounded-md shadow-md text-base md:text-lg font-semibold" >

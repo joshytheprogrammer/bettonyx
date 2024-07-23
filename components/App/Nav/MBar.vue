@@ -3,7 +3,7 @@
     <div class="w-fit">
       <a aria-current="page" href="/" class="router-link-active router-link-exact-active flex items-center space-around no-underline">
         <!-- <Icon class="text-green-800" size="4em" name="ph:car-fill" /> -->
-        <h1 class="font-bold text- md:text-2xl lg:text-4xl px-2 text-white"> 
+        <h1 class="font-bold text-base md:text-2xl lg:text-4xl px-2 text-white"> 
           Bettonyx <sup class="text-xs text-white pr-2">™</sup>
           <sup v-if="!userStore.isAuthenticated" class="text-[8px] bg-secondary-800 text-white p-1 rounded-md">Beta</sup>
         </h1>
@@ -11,10 +11,10 @@
     </div>
     <div class="flex gap-2 items-center">
       <div class="flex gap-2 items-center" v-if="!userStore.isAuthenticated">
-        <button class="text-xs block text-center px-1.5 py-2 bg-secondary-800 text-white font-semibold  rounded-md">
+        <button class="text-xs block text-center px-2 py-4 bg-secondary-800 text-white md:font-semibold rounded-md">
           <NuxtLink to="/login">Login</NuxtLink>
         </button>
-        <button class="text-xs block text-center px-1.5 py-2 bg-transparent text-white font-semibold rounded-md border-2 border-secondary-800 ">
+        <button class="text-xs block text-center px-2 py-4 bg-transparent text-white md:font-semibold rounded-md border-2 border-secondary-800 ">
           <NuxtLink to="/register">Register</NuxtLink>
         </button>
       </div>
