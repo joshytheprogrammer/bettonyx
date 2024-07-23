@@ -24,7 +24,7 @@
       placeholder="Select bank" 
       />
       
-      <UButton :loading="loading" class="bg-secondary-900 w-fit text-xs p-4" type="submit">Add account</UButton>
+      <UButton :loading="loading" class="bg-secondary-900 w-fit text-xs md:text-base p-4 md:p-2" type="submit">Add account</UButton>
     </form>
   </div>
 </template>
