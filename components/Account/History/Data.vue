@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full" draggable="true">
+  <div class="w-full">
     <div class="flex flex-col gap-4 h-[400px] overflow-auto">
       <div class="m-1" v-for="item in combinedBets" :key="item.id">
         <p class="py-2">{{ formatDate(item.timestamp) }}</p>
