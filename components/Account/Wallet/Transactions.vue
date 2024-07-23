@@ -11,8 +11,8 @@
     <div v-else class="w-full md:h-96 md:overflow-auto border rounded-md shadow-sm">
       <div v-for="item in transactions" :key="item.id">
         <div v-if="item.type === 'deposit'" class="py-4 px-5 flex items-center justify-between gap-8 border-b border-black dark:border-white">
-          <div class="space-y-2">
-            <h3 class="text-base md:text-sm font-semibold">Deposit</h3>
+          <div class="space-y-4">
+            <h3 class="text-sm md:text-base font-semibold">Deposit</h3>
             <p class="text-xs md:text-sm  font-normal">TNB-{{ item.id }}</p>
           </div>
           <p class="text-secondary-900 dark:text-secondary-600 text-xs md:text-sm  font-normal">
@@ -23,8 +23,8 @@
           </p>
         </div>
         <div v-if="item.type === 'withdraw'" class="py-4 px-5 flex items-center justify-between gap-8 border-b border-black dark:border-white">
-          <div class="space-y-2">
-            <h3 class="text-base md:text-sm font-semibold">Withdrawal</h3>
+          <div class="space-y-4">
+            <h3 class="text-sm md:text-base font-semibold">Withdrawal</h3>
             <p class="text-xs md:text-sm  font-normal">TNB-{{ item.id }}</p>
           </div>
           <p class="text-red-900 dark:text-red-600 text-sm font-normal">
@@ -35,8 +35,8 @@
           </p>
         </div>
         <div v-if="item.type === 'bet_hold'" class="py-4 px-5 flex items-center justify-between gap-8 border-b border-black dark:border-white">
-          <div class="space-y-2">
-            <h3 class="text-base md:text-sm font-semibold">Bet Hold</h3>
+          <div class="space-y-4">
+            <h3 class="text-sm md:text-base font-semibold">Bet Hold</h3>
             <p class="text-xs md:text-sm  font-normal">TNB-{{ item.id }}</p>
           </div>
           <p class="text-red-900 dark:text-red-600 text-xs md:text-sm  font-normal">
@@ -47,8 +47,8 @@
           </p>
         </div>
         <div v-if="item.type === 'bet_payout'" class="py-4 px-5 flex items-center justify-between gap-8 border-b border-black dark:border-white">
-          <div class="space-y-2">
-            <h3 class="text-base md:text-sm font-semibold">Bet Payout</h3>
+          <div class="space-y-4">
+            <h3 class="text-sm md:text-base font-semibold">Bet Payout</h3>
             <p class="text-xs md:text-sm  font-normal">TNB-{{ item.id }}</p>
           </div>
           <p class="text-secondary-900 dark:text-secondary-600 text-xs md:text-sm  font-normal">
