@@ -9,7 +9,14 @@ export default defineEventHandler(async (event) => {
   const { db } = useFirebaseServer();
 
   // Retrieve bet details from the request body
-  const { userID, matchID, teamBetOn, betAmount, oddsAtBetTime } = rawBody;
+  const { userID, betType, teamBetOn, betAmount, oddsAtBetTime } = rawBody;
+  let itemID;
+  
+  if (betType === 'match') {
+    itemID = rawBody.matchID;
+  } else if (betType === 'event') {
+    itemID = rawBody.eventID;
+  }
 
   // Validate betAmount
   if (isNaN(betAmount) || betAmount <= 0) {
@@ -27,14 +34,13 @@ export default defineEventHandler(async (event) => {
   const transactionID = generateTransactionReference();
   const holdingID = generateTransactionReference();
   const paymentChannel = 'wallet';
-  const betType = 'match';
 
   // Create bet object
   const bet = {
     userID: userID,
     item: {
-      type: betType, // OR event
-      id: matchID
+      type: betType, // match or event
+      id: itemID
     },
     teamBetOn: teamBetOn,
     betAmount: parseFloat(betAmount).toFixed(2),
@@ -81,7 +87,8 @@ export default defineEventHandler(async (event) => {
         holdingID: holdingID,
         uid: userID,
         amount: betAmount,
-        matchID: matchID,
+        matchID: betType === 'match' ? itemID : null,
+        eventID: betType === 'event' ? itemID : null,
         status: 'holding',
         createdAt: Timestamp.now(),
         updatedAt: Timestamp.now()

@@ -10,8 +10,11 @@
         <div class="flex justify-between p-2">
           <div class="flex flex-col">
             <div v-if="item.type === 'singles'">
-              <p class="uppercase">
+              <p class="uppercase" v-if="item.betType === 'match'">
                 {{ item.matchDetails ? `${reverseEngineerID(item.matchDetails.teamA.id)} vs ${reverseEngineerID(item.matchDetails.teamB.id)}` : 'Loading...' }}
+              </p>
+              <p class="uppercase" v-else-if="item.betType === 'event'">
+                {{ item.eventDetails ? item.eventDetails.name : 'Loading...' }}
               </p>
             </div>
             <div v-else-if="item.type === 'multiple'">
@@ -55,6 +58,7 @@ const combinedBets = ref([]);
 const uid = userStore.getUser.uid;
 
 const matchCache = new Map();
+const eventCache = new Map();
 
 async function fetchMatch(matchID) {
   if (matchCache.has(matchID)) {
@@ -77,6 +81,27 @@ async function fetchMatch(matchID) {
   }
 }
 
+async function fetchEvent(eventID) {
+  if (eventCache.has(eventID)) {
+    return eventCache.get(eventID);
+  }
+
+  try {
+    const eventDoc = await getDoc(doc(db, 'events', eventID));
+    if (eventDoc.exists()) {
+      const eventData = eventDoc.data();
+      eventCache.set(eventID, eventData);
+      return eventData;
+    } else {
+      console.log(`No such event with ID: ${eventID}`);
+      return null;
+    }
+  } catch (error) {
+    console.error('Error fetching event:', error);
+    return null;
+  }
+}
+
 async function fetchBetHistory() {
   loading.value = true;
   error.value = false;
@@ -91,12 +116,19 @@ async function fetchBetHistory() {
     const betsSnapshot = await getDocs(betsQuery);
     const bets = await Promise.all(betsSnapshot.docs.map(async (doc) => {
       const data = doc.data();
-      const matchDetails = await fetchMatch(data.item.id);
+      let itemDetails = null;
+      if (data.item.type === 'match') {
+        itemDetails = await fetchMatch(data.item.id);
+      } else if (data.item.type === 'event') {
+        itemDetails = await fetchEvent(data.item.id);
+      }
       return {
         ...data,
         id: doc.id,
         type: 'singles',
-        matchDetails,
+        betType: data.item.type,
+        matchDetails: data.item.type === 'match' ? itemDetails : null,
+        eventDetails: data.item.type === 'event' ? itemDetails : null,
         timestamp: data.timestamp.toDate()
       };
     }));
@@ -123,13 +155,11 @@ async function fetchBetHistory() {
         type: 'multiple',
         bets: betsWithMatchDetails,
         timestamp: data.timestamp.toDate()
-        
       };
     }));
 
     // Combine and sort bets and tickets
-    // combinedBets.value = [...bets, ...tickets].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-    combinedBets.value = [...tickets, ...bets ].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+    combinedBets.value = [...tickets, ...bets].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
   } catch (e) {
     error.value = true;
     console.log(e);

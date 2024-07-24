@@ -140,6 +140,7 @@ const placeBet = async () => {
           userID: uid,
           matchID: bet.match.id,
           teamBetOn: bet.teamBetOn,
+          betType: 'match',
           betAmount: betslipStore.getBetAmount,
           oddsAtBetTime: betslipStore.totalOdds,
         }),

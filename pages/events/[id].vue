@@ -29,7 +29,7 @@
         <div class="border py-4 px-2" v-if="selectedTeam.id">
           <h2 class="text-2xl pb-6 underline underline-offset-[12px] decoration-secondary-500">Event Slip</h2>
           <div class="flex gap-2 items-center font-semibold">
-            <p class="w-fit bg-gray-400 dark:bg-gray-500 dark:text-white rounded-md p-3 text-sm" >{{ selectedTeam.odds }}x</p>
+            <p class="w-fit bg-secondary-400 dark:bg-secondary-600 dark:text-white rounded-md p-3 text-sm" >{{ selectedTeam.odds }}x</p>
             <p class="text-base md:text-lg" >{{ selectedTeam.name }}</p>
           </div>
           <div class="flex flex-col gap-3 py-4">
@@ -65,7 +65,7 @@
           </div>
           <div class="py-4">
             <NuxtLink v-if="!userStore.isAuthenticated" to="/login" class="block bg-secondary-800 text-center w-full rounded-md text-white py-2 text-sm">Sign in to Place Bet</NuxtLink>
-            <UButton v-else :loading="loading" :disabled="loading" class="bg-secondary-800 flex items-center justify-center hover:bg-secondary-900 text-center w-full rounded-md text-white py-2 text-sm" @click="placeEventBet">Place Bet</UButton>
+            <UButton v-else :loading="loading" :disabled="loading" class="bg-secondary-800 flex items-center justify-center hover:bg-secondary-900 text-center w-full rounded-md text-white py-2 text-sm" @click="placeEventBet">Place Event Bet</UButton>
           </div>
         </div>
         <!-- <pre class="mt-4">{{ event }}</pre> -->
@@ -80,12 +80,13 @@ import { useUserStore } from "@/store/user";
 
 const route = useRoute();
 const userStore = useUserStore();
+const toast = useToast();
 
 const db = useFirestore();
 const event = reactive({});
 const loading = ref(false);
 
-const selectedTeam = reactive({});
+let selectedTeam = reactive({});
 const amount = ref(0);
 const potentialPayout = computed(() => parseFloat(amount.value) * parseFloat(selectedTeam.odds));
 
@@ -107,10 +108,49 @@ async function fetchEventData() {
   }
 }
 
-fetchEventData();
+await fetchEventData();
 
 async function placeEventBet() {
-  // Implementation of the placeEventBet function
+  loading.value = true;
+
+  try {
+    if (amount.value < 100) {
+      toast.error('Amount must be at least 100');
+      return;
+    }
+
+    if (amount.value > userStore.getBalance) {
+      toast.error('Insufficient Funds. Fund your account.');
+      return;
+    }
+
+    const response = await $fetch('/api/create/bet', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userID: userStore.getUser.uid,
+        eventID: event.id,
+        betType: 'event',
+        teamBetOn: selectedTeam.name,
+        betAmount: amount.value,
+        oddsAtBetTime: selectedTeam.odds,
+      }),
+    });
+
+    if (response.status === 200) {
+      toast.add({'title': 'Bet Placed. Good Luck. Check your bet history for more details.'});
+      selectedTeam = {}
+    } else {
+      toast.add({title: 'Failed to place bet. Check your bet history and balance.', color: 'red'});
+    }
+  } catch (error) {
+    console.error('An error occurred:', error);
+    toast.add({title: 'An error occurred while placing the bet.', color: 'red'});
+  } finally {
+    loading.value = false;
+  }
 }
 
 function selectTeam(team) {
