@@ -6,7 +6,7 @@
           <NuxtLink to="/">
             <!-- <Icon class="text-green-800" size="4em" name="ph:car-fill" /> -->
             <h1 class="font-bold text-xl md:text-2xl lg:text-4xl px-2 text-white"> 
-              Bettony <sup class="text-xs text-white pr-2">™</sup>
+              BettonyX<sup class="text-xs text-white pr-2">™</sup>
               <sup class="text-xs bg-secondary-800 text-white p-1 rounded-md">Beta</sup>
             </h1>
           </NuxtLink>

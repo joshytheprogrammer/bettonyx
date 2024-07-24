@@ -5,13 +5,13 @@
       <form v-if="!verify" class="flex flex-col gap-4" @submit.prevent="submit">
         <UInput class="text-xs" type="text" placeholder="Enter deposit amount" v-model="amount" />
         <div class="flex justify-between items-center">
-          <UButton :loading="loading" class="bg-secondary-900 w-fit py-4 px-5 "type="submit">Deposit</UButton>
+          <UButton :loading="loading" class="bg-secondary-900 w-fit py-4 px-5 md:py-2 md:px-3 "type="submit">Deposit</UButton>
           <NuxtLink to="/account/my/wallet" class="text-red-800 underline text-sm" >Close</NuxtLink>
         </div>
       </form>
       <div class="w-full space-y-4" v-else>
         <HelpersLoaderDot />
-        <p v-if="depositAmount" class="text-base ">
+        <p v-if="depositAmount" class="text-sm md:text-base">
           Verifying 
           <span class="font-semibold">
             {{ 

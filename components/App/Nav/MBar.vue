@@ -4,7 +4,7 @@
       <a aria-current="page" href="/" class="router-link-active router-link-exact-active flex items-center space-around no-underline">
         <!-- <Icon class="text-green-800" size="4em" name="ph:car-fill" /> -->
         <h1 class="font-bold text-base md:text-2xl lg:text-4xl px-2 text-white"> 
-          Bettonyx <sup class="text-xs text-white pr-2">™</sup>
+          BettonyX <sup class="text-xs text-white pr-2">™</sup>
           <sup v-if="!userStore.isAuthenticated" class="text-[8px] bg-secondary-800 text-white p-1 rounded-md">Beta</sup>
         </h1>
       </a>

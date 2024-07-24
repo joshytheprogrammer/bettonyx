@@ -33,6 +33,10 @@ export default defineEventHandler(async (event) => {
 
     const paystackData = await paystackResponse.json();
 
+    if(paystackData.data.status != 'success') {
+      return new Response(JSON.stringify({ error: paystackData.data.gateway_response || 'Deposit not found' }), { status: 400 });
+    }
+
     //* Verify deposit from Paystack matches deposit amount
     if (depositAmount != paystackData.data.amount / 100) {
       return new Response(JSON.stringify({ error: 'Deposit amount mismatch' }), { status: 400 });
