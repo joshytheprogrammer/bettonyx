@@ -106,5 +106,5 @@ function addBet(match, teamBetOn) {
   betslipStore.addBet(bet)
 }
 
-loadMatches();
+await loadMatches();
 </script>
