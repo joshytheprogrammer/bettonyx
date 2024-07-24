@@ -10,6 +10,14 @@
         </div>
       </form>
       <div class="w-full space-y-4" v-else>
+        <!-- <UAlert
+        title="Note"
+        class="w-full"
+        variant="solid"
+        description="If your verification is taking time. Save this code. You will need it for customer support. -- us9ImAWLMhKS95C --"
+        :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'white', variant: 'link', padded: true }"
+        /> -->
+        <p class="bg-main-800 px-2 py-2 text-sm rounded-md" >If your verification is taking too long. Contact customer support with this ID <code>{{route.query.reference}}</code></p>
         <HelpersLoaderDot />
         <p v-if="depositAmount" class="text-sm md:text-base">
           Verifying 
@@ -49,6 +57,7 @@ const { generateTransactionReference } = useCreateUtilities();
 // Update the reactive property based on the route query
 watchEffect(() => {
   verify.value = route.query.verify || false;
+  
 });
 
 onMounted(async () => {

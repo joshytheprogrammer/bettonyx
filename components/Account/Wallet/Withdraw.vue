@@ -11,7 +11,7 @@
         value-attribute="recipientCode"
         option-attribute="number"
         />
-        <div class="flex justify-between items-center gap-4">
+        <div class="flex justify-between items-center gap-8">
           <UButton :loading="loading" class="bg-secondary-900 w-fit py-4 px-5 md:py-2 md:px-3 "type="submit">Initiate Withdrawal</UButton>
           <NuxtLink to="/account/my/wallet" class="text-red-400 underline text-sm" >Close</NuxtLink>
         </div>

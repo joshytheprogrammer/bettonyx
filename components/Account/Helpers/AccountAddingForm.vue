@@ -50,7 +50,7 @@ const data = reactive({
 onMounted(async () => {
   const { data } = await $fetch('https://api.paystack.co/bank', {
     headers: {
-      Authorization: 'Bearer '+useRuntimeConfig().paystackSecretKey,
+      // Authorization: 'Bearer '+useRuntimeConfig().paystackSecretKey,
       'Content-Type': 'application/json'
     },
     query: {
