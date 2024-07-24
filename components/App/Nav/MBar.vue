@@ -1,13 +1,13 @@
 <template>
   <nav class="flex lg:hidden justify-between items-center m-auto max-w-full text-center p-0 rounded-none border-0 bg-none bg-main-800 px-4 sm:px-8 md:px-8 lg:px-18 py-8 ">
     <div class="w-fit">
-      <a aria-current="page" href="/" class="router-link-active router-link-exact-active flex items-center space-around no-underline">
+      <NuxtLink to="/" class=" flex items-center space-around no-underline">
         <!-- <Icon class="text-green-800" size="4em" name="ph:car-fill" /> -->
         <h1 class="font-bold text-base md:text-2xl lg:text-4xl px-2 text-white"> 
           BettonyX <sup class="text-xs text-white pr-2">™</sup>
           <sup v-if="!userStore.isAuthenticated" class="text-[8px] bg-secondary-800 text-white p-1 rounded-md">Beta</sup>
         </h1>
-      </a>
+      </NuxtLink>
     </div>
     <div class="flex gap-2 items-center">
       <div class="flex gap-2 items-center" v-if="!userStore.isAuthenticated">
