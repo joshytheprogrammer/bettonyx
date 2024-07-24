@@ -1,3 +1,75 @@
-export default defineEventHandler(async (event) => {
+import useFirebaseServer from '~/composables/useFirebaseServer';
+import { Timestamp } from 'firebase-admin/firestore';
 
-})
+export default defineEventHandler(async (event) => {
+  const { db } = useFirebaseServer();
+  const config = useRuntimeConfig(event);
+  const headersList = {
+    Authorization: 'Bearer ' + config.paystackSecretKey,
+    'Content-Type': 'application/json'
+  };
+
+  const body = await readBody(event);
+  const { code, amount, reference } = body.formData;
+
+  try {
+    // Fetch user balance
+    const userDoc = await db.collection('users').doc(body.uid).get();
+    const userData = userDoc.data();
+    
+    if (!userDoc.exists || userData.balance === undefined) {
+      throw new Error("User not found or balance not available");
+    }
+
+    const userBalance = userData.balance;
+    const withdrawalAmount = amount; // Convert to kobo
+
+    // Check if the amount is greater than the user's balance
+    if (withdrawalAmount > userBalance) {
+      return new Response("Insufficient balance", { status: 400 });
+    }
+
+    // Initiate the transfer
+    const params = {
+      source: "balance",
+      amount: withdrawalAmount* 100,
+      recipient: code,
+      reason: "Withdrawal from BettonyX",
+      currency: "NGN",
+      reference: reference
+    };
+
+    const response = await fetch('https://api.paystack.co/transfer', {
+      method: 'POST',
+      headers: headersList,
+      body: JSON.stringify(params)
+    });
+
+    const responseData = await response.json();
+
+    if (!response.ok) {
+      throw new Error(responseData.message || "Transfer initiation failed");
+    }
+
+    const transferStatus = responseData.data.status;
+
+    // Withdraw the user's balance
+    const newBalance = userBalance - withdrawalAmount;
+    await db.collection('users').doc(body.uid).update({ balance: newBalance });
+
+    // Record the withdrawal in the transactions table
+    await db.collection('transactions').doc().set({
+      uid: body.uid,
+      type: 'withdrawal',
+      amount: withdrawalAmount,
+      status: transferStatus,
+      reference: reference,
+      createdAt: Timestamp.fromDate(new Date())
+    });
+
+    return new Response("Withdrawal initiated successfully", { status: 200 });
+  } catch (error) {
+    console.error("An error occurred while processing the request:", error);
+    return new Response("Internal Server Error", { status: 500 });
+  }
+});

@@ -2,7 +2,7 @@
   <div class="flex flex-col pt-4" >
     <h2 class="md:text-2xl text-lg font-medium leading-9 tracking-tight ">Withdrawal Slip</h2>
     <div class="py-4">
-      <form v-if="!verify" class="flex flex-col gap-4" @submit.prevent="submit">
+      <form class="flex flex-col gap-4" @submit.prevent="submit">
         <UInput class="text-xs" type="text" placeholder="Enter withdrawal amount" v-model="amount" />
         <USelectMenu 
         placeholder="Select transfer recipient" 
@@ -11,23 +11,11 @@
         value-attribute="recipientCode"
         option-attribute="number"
         />
-        <div class="flex justify-between items-center">
+        <div class="flex justify-between items-center gap-4">
           <UButton :loading="loading" class="bg-secondary-900 w-fit py-4 px-5 md:py-2 md:px-3 "type="submit">Initiate Withdrawal</UButton>
           <NuxtLink to="/account/my/wallet" class="text-red-800 underline text-sm" >Close</NuxtLink>
         </div>
       </form>
-      <div class="w-full space-y-4" v-else>
-        <HelpersLoaderDot />
-        <p v-if="withdrawalAmount" class="text-sm md:text-base">
-          Verifying 
-          <span class="font-semibold">
-            {{ 
-              new Intl.NumberFormat('en-NG', {style: 'currency', currency: 'NGN'}).format(withdrawalAmount)
-            }}
-          </span> 
-          Withdrawal
-        </p>
-      </div>
     </div>
   </div>
 </template>
