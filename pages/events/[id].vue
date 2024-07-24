@@ -27,11 +27,10 @@
         <p class="">Starts: <span class="block font-semibold">{{ event.startDate }} at {{ event.startTime }}</span></p>
         <p class="mt-2">Description: <span class="block text-xs md:text-base font-medium">{{ event.description }}</span></p>
         <div class="border py-4 px-2" v-if="selectedTeam.id">
-          <h2 class="text-2xl pb-4">Event Slip</h2>
-          <div class="">
-            <h2 class="">Who will win?</h2>
-            <p class="" >{{ selectedTeam.name }}</p>
-            <p class="w-fit bg-gray-300 dark:bg-gray-400 dark:text-black rounded-md p-2 text-sm" >{{ selectedTeam.odds }}</p>
+          <h2 class="text-2xl pb-6 underline underline-offset-[12px] decoration-secondary-500">Event Slip</h2>
+          <div class="flex gap-2 items-center font-semibold">
+            <p class="w-fit bg-gray-400 dark:bg-gray-500 dark:text-white rounded-md p-3 text-sm" >{{ selectedTeam.odds }}x</p>
+            <p class="text-base md:text-lg" >{{ selectedTeam.name }}</p>
           </div>
           <div class="flex flex-col gap-3 py-4">
             <div class="w-full">
