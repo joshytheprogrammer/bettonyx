@@ -6,7 +6,7 @@
         <UInput class="text-xs" type="text" placeholder="Enter deposit amount" v-model="amount" />
         <div class="flex justify-between items-center">
           <UButton :loading="loading" class="bg-secondary-900 w-fit py-4 px-5 md:py-2 md:px-3 "type="submit">Deposit</UButton>
-          <NuxtLink to="/account/my/wallet" class="text-red-800 underline text-sm" >Close</NuxtLink>
+          <NuxtLink to="/account/my/wallet" class="text-red-400 underline text-sm" >Close</NuxtLink>
         </div>
       </form>
       <div class="w-full space-y-4" v-else>

@@ -4,17 +4,19 @@ import { Timestamp } from 'firebase-admin/firestore';
 export default defineEventHandler(async (event) => {
   const { db } = useFirebaseServer();
   const config = useRuntimeConfig(event);
+
   const headersList = {
     Authorization: 'Bearer ' + config.paystackSecretKey,
     'Content-Type': 'application/json'
   };
 
-  const body = await readBody(event);
-  const { code, amount, reference } = body.formData;
+  const rawBody = await readBody(event)
+
+  const { uid, code, amount, reference } = rawBody.formData;
 
   try {
     // Fetch user balance
-    const userDoc = await db.collection('users').doc(body.uid).get();
+    const userDoc = await db.collection('users').doc(uid).get();
     const userData = userDoc.data();
     
     if (!userDoc.exists || userData.balance === undefined) {
@@ -51,19 +53,24 @@ export default defineEventHandler(async (event) => {
       throw new Error(responseData.message || "Transfer initiation failed");
     }
 
-    const transferStatus = responseData.data.status;
+    const transferStatus = responseData.data.status === 'success' ? 'completed' : responseData.data.status;
 
     // Withdraw the user's balance
     const newBalance = userBalance - withdrawalAmount;
-    await db.collection('users').doc(body.uid).update({ balance: newBalance });
+    await db.collection('users').doc(uid).update({ balance: newBalance });
 
     // Record the withdrawal in the transactions table
-    await db.collection('transactions').doc().set({
-      uid: body.uid,
+    await db.collection('transactions').doc(reference).set({
+      uid: uid,
       type: 'withdrawal',
       amount: withdrawalAmount,
       status: transferStatus,
       reference: reference,
+      paystack: {
+        transferId: responseData.data.id,
+        transferCode: responseData.data.transfer_code
+      },
+      recipientCode: code,
       createdAt: Timestamp.fromDate(new Date())
     });
 

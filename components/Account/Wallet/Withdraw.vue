@@ -13,7 +13,7 @@
         />
         <div class="flex justify-between items-center gap-4">
           <UButton :loading="loading" class="bg-secondary-900 w-fit py-4 px-5 md:py-2 md:px-3 "type="submit">Initiate Withdrawal</UButton>
-          <NuxtLink to="/account/my/wallet" class="text-red-800 underline text-sm" >Close</NuxtLink>
+          <NuxtLink to="/account/my/wallet" class="text-red-400 underline text-sm" >Close</NuxtLink>
         </div>
       </form>
     </div>
@@ -41,25 +41,22 @@ const withdrawal_accounts = ref([]);
 const recipientCode = ref('')
 const amount  = ref('');
 const loading = ref(false);
-const withdrawalAmount = ref(null); 
 
 const { generateTransactionReference } = useCreateUtilities();
 
-onMounted(async () => {
-  const accountsSnapshot = await getDocs(
-    query(
-      collection(db, 'withdrawal_accounts'), 
-      where('uid', '==', uid)
-    )
-  );
+const accountsSnapshot = await getDocs(
+  query(
+    collection(db, 'withdrawal_accounts'), 
+    where('uid', '==', uid)
+  )
+);
 
-  if (accountsSnapshot.empty) {
-  } else {
-    accountsSnapshot.forEach((doc) => {
-      withdrawal_accounts.value.push({id:doc.id, ...doc.data()});
-    });
-  }
-})
+if (accountsSnapshot.empty) {
+} else {
+  accountsSnapshot.forEach((doc) => {
+    withdrawal_accounts.value.push({id:doc.id, ...doc.data()});
+  });
+}
 
 async function submit() {
   if(!validate()){return}
@@ -70,16 +67,19 @@ async function submit() {
       method: "POST",
       body: { 
         formData: {
-          code: recipientCode,
+          uid: uid,
+          code: recipientCode.value,
           amount: amount.value,
           reference: generateTransactionReference(),
         }
       }
-    }).then((res) => {
-      // navigateTo(res.data.authorization_url, { external: true })
+    }).then(async (res) => {
+      toast.add({title: 'Success', description: res})
+      await getBalance()
       router.push('/account/my/wallet')
     });
   }catch (e) {
+    toast.add({title: 'An error occurred', description: 'Check console for more or contact support', color: 'red'})
     console.log(e)
   }finally {
     loading.value = false

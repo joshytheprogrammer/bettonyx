@@ -10,7 +10,7 @@
 
     <div v-else class="w-full md:h-96 md:overflow-auto border rounded-md shadow-sm">
       <div v-for="item in transactions" :key="item.id">
-        <div v-if="item.type === 'deposit'" class="py-4 px-5 flex items-center justify-between gap-8 border-b border-black dark:border-white">
+        <div v-if="item.type === 'deposit'" class="py-4 px-5 flex items-center justify-between gap-12 border-b border-black dark:border-white">
           <div class="space-y-4">
             <h3 class="text-sm md:text-base font-semibold">Deposit</h3>
             <p class="text-xs md:text-sm  font-normal">TNB-{{ item.id }}</p>
@@ -22,9 +22,12 @@
             }}
           </p>
         </div>
-        <div v-if="item.type === 'withdraw'" class="py-4 px-5 flex items-center justify-between gap-8 border-b border-black dark:border-white">
+        <div v-if="item.type === 'withdrawal'" class="py-4 px-5 flex items-center justify-between gap-12 border-b border-black dark:border-white">
           <div class="space-y-4">
-            <h3 class="text-sm md:text-base font-semibold">Withdrawal</h3>
+            <h3 class="text-sm md:text-base font-semibold ">
+              Withdrawal <sup v-if="item.status != 'completed'" class="text-[8px]
+              " >({{ item.status }})</sup>
+            </h3>
             <p class="text-xs md:text-sm  font-normal">TNB-{{ item.id }}</p>
           </div>
           <p class="text-red-900 dark:text-red-600 text-sm font-normal">
@@ -34,7 +37,7 @@
             }}
           </p>
         </div>
-        <div v-if="item.type === 'bet_hold'" class="py-4 px-5 flex items-center justify-between gap-8 border-b border-black dark:border-white">
+        <div v-if="item.type === 'bet_hold'" class="py-4 px-5 flex items-center justify-between gap-12 border-b border-black dark:border-white">
           <div class="space-y-4">
             <h3 class="text-sm md:text-base font-semibold">Bet Hold</h3>
             <p class="text-xs md:text-sm  font-normal">TNB-{{ item.id }}</p>
@@ -46,7 +49,7 @@
             }}
           </p>
         </div>
-        <div v-if="item.type === 'bet_payout'" class="py-4 px-5 flex items-center justify-between gap-8 border-b border-black dark:border-white">
+        <div v-if="item.type === 'bet_payout'" class="py-4 px-5 flex items-center justify-between gap-12 border-b border-black dark:border-white">
           <div class="space-y-4">
             <h3 class="text-sm md:text-base font-semibold">Bet Payout</h3>
             <p class="text-xs md:text-sm  font-normal">TNB-{{ item.id }}</p>
@@ -90,8 +93,7 @@ try {
       const data = doc.data();
       transactions.value.push({
         id: doc.id,
-        type: data.type,
-        amount: data.amount,
+        ...data,
         createdAt: new Date(data.createdAt)
       });
     });
