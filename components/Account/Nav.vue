@@ -1,5 +1,5 @@
 <template>
-  <div class="links w-52 h-fit border border-slate-500 flex flex-col ">
+  <div class="links w-52 h-fit border rounded-md flex flex-col ">
     <NuxtLink class="" to="/account/my">Profile</NuxtLink>
     <NuxtLink class="" to="/account/my/wallet">Wallet</NuxtLink>
     <NuxtLink class="" to="/account/my/bet_history">Bet History</NuxtLink>
