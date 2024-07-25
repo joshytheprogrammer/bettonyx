@@ -7,6 +7,9 @@
         <span class="text-sm md:text-base" >{{ item.name }}</span>
       </div>
     </div>
+    <div class="py-4 px-2" v-if="events.length == 0">
+      <p>No events available</p>
+    </div>
   </div>
 </template>
 
