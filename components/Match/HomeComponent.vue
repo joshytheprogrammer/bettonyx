@@ -12,9 +12,9 @@
             }}
           </h3>
           <div class="flex space-x-[2px] text-center text-gray-600 dark:text-gray-200">
-            <span class="w-14">win</span>
-            <span class="w-14">tie</span>
-            <span class="w-14">lose</span>
+            <span class="w-14">home</span>
+            <span class="w-14">draw</span>
+            <span class="w-14">away</span>
           </div>
         </div>
         <div v-for="match in dayMatches" :key="match.id" class="flex justify-between items-center py-4 px-2 border-t">

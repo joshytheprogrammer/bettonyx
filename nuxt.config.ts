@@ -15,13 +15,13 @@ export default defineNuxtConfig({
       enabled: true
     },
     config: {
-      apiKey: "AIzaSyDVjAQQu3BoDCdb-47gTLp1PKw9853phHA",
-      authDomain: "eaglebet-jtp.firebaseapp.com",
-      projectId: "eaglebet-jtp",
-      storageBucket: "eaglebet-jtp.appspot.com",
-      messagingSenderId: "294873641657",
-      appId: "1:294873641657:web:783d2e944bd9d688dae168",
-      measurementId: "G-V7T926R3VT"
-    },
+      apiKey: process.env.FIREBASE_API_KEY,
+      authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+      projectId: process.env.FIREBASE_PROJECT_ID,
+      storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+      messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+      appId: process.env.FIREBASE_APP_ID,
+      measurementId: process.env.FIREBASE_MEASUREMENT_ID
+    }
   },
 })
