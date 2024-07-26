@@ -72,13 +72,13 @@ async function login() {
   .then(async (credential) => {
     await userStore.setUser({ uid: credential.user.uid })
 
-    // await getDoc(doc(db, 'users', credential.user.uid))
-    // .then((doc) => {
-    //   const { role, createdAt, ...rest } = doc.data();
-    //   const newUser = {id: doc.id, ...rest}
+    await getDoc(doc(db, 'users', credential.user.uid))
+    .then((doc) => {
+      const { role, createdAt, ...rest } = doc.data();
+      const newUser = {id: doc.id, ...rest}
 
-    //   userStore.setUserData({email: newUser.email, phone: newUser.phone})
-    // });
+      userStore.setUserData({email: newUser.email, phone: newUser.phone})
+    });
 
     toast.add({ title: 'Authentication successful' })
   })

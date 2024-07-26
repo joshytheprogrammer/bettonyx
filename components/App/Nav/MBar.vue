@@ -2,7 +2,6 @@
   <nav class="flex lg:hidden justify-between items-center m-auto max-w-full text-center p-0 rounded-none border-0 bg-none bg-primary-800 px-4 sm:px-8 md:px-8 lg:px-18 py-8 ">
     <div class="w-fit">
       <NuxtLink to="/" class=" flex items-center space-around no-underline">
-        <!-- <Icon class="text-green-800" size="4em" name="ph:car-fill" /> -->
         <h1 class="font-bold text-base md:text-2xl lg:text-4xl px-2 text-white"> 
           BettonyX <sup class="text-xs text-white pr-2">™</sup>
           <sup v-if="!userStore.isAuthenticated" class="text-[8px] bg-secondary-800 text-white p-1 rounded-md">Beta</sup>
@@ -11,10 +10,10 @@
     </div>
     <div class="flex gap-2 items-center">
       <div class="flex gap-2 items-center" v-if="!userStore.isAuthenticated">
-        <button class="text-xs block text-center px-2 py-4 bg-primary-800 text-white md:font-semibold rounded-md">
+        <button class="text-xs block text-center px-2 py-4 bg-primary-950 text-white md:font-semibold rounded-md">
           <NuxtLink to="/login">Login</NuxtLink>
         </button>
-        <button class="text-xs block text-center px-2 py-4 bg-transparent text-white md:font-semibold rounded-md border-2 border-primary-800 ">
+        <button class="text-xs block text-center px-2 py-4 bg-transparent text-white md:font-semibold rounded-md border-2 border-primary-950 ">
           <NuxtLink to="/register">Register</NuxtLink>
         </button>
       </div>
@@ -43,22 +42,17 @@
       </div>
     </div>
       <!-- Mobile Nav -->
-    <div class="mobile-nav flex fixed w-full h-full bg-white dark:bg-gray-900 flex-col items-center justify-center z-[1000] left-0 top-0" v-show="menuShowing">
-      <div class="close-btn absolute text-[2rem] text-black cursor-pointer right-4 top-4" @click="toggleMenu">&times;</div>
-      <div class="flex flex-col gap-4 items-center">
-        <!-- <div class="">
-          <h2 class="text-lg font-semibold py-4">Login Shap Shap</h2>
-          <AuthNavLogin />
-        </div> -->
-        <div class="links flex flex-col gap-4 border border-primary-800 px-4 py-8">
-          <NuxtLink to="/account/my">Profile</NuxtLink>
-          <NuxtLink to="/account/my/wallet">Wallet</NuxtLink>
-          <NuxtLink to="/account/my/bet_history">Bet History</NuxtLink>
-          <NuxtLink to="/account/my/wallet">Transaction History</NuxtLink>
-        </div>
-        
-        <button @click="toggleMenu" class="bg-red-600 rounded-md px-4 py-2 ">Close</button>
-        
+    <div class="block  bg-white dark:bg-gray-900 z-50 fixed left-0 top-0 bottom-0 right-0 w-full h-full" v-show="menuShowing">
+      <div class="close-btn absolute text-[2rem] text-black dark:text-white cursor-pointer right-4 top-4" @click="toggleMenu">&times;</div>
+      <h1 class="font-bold text-[2rem] px-2 text-white absolute top-4 left-4"> 
+        BettonyX <sup class="text-xs text-white pr-2">™</sup>
+        <sup v-if="!userStore.isAuthenticated" class="text-[8px] bg-primary-800 text-white p-1 rounded-md">Beta</sup>
+      </h1>
+      <div class="absolute links text-left space-y-8 px-2 text-base py-36">
+        <NuxtLink to="/account/my">Profile</NuxtLink>
+        <NuxtLink to="/account/my/wallet">Wallet</NuxtLink>
+        <NuxtLink to="/account/my/bet_history">Bet History</NuxtLink>
+        <NuxtLink to="/account/my/wallet">Transaction History</NuxtLink>
       </div>
     </div>
   </nav>
@@ -94,6 +88,6 @@ const isDark = computed({
 
 <style lang="postcss" scoped>
 nav .links a {
-  @apply text-inherit px-4 py-0;
+  @apply block text-inherit px-4 py-0;
 }
 </style>
