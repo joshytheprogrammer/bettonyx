@@ -1,6 +1,7 @@
 export default defineAppConfig({
   ui: {
-    primary: 'secondary',
+    primary: 'main',
+    secondary: 'secondary',
     gray: 'neutral',
   }
 })

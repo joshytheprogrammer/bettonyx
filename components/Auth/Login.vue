@@ -9,26 +9,26 @@
         <div>
           <label class="block text-sm font-medium leading-6 ">Phone</label>
           <div class="mt-2">
-            <input type="text" autocomplete="phone" required class="block w-full rounded-md border-0 p-1.5 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-secondary-800 text-xs sm:text-sm sm:leading-6" v-model="user.phone" placeholder="Enter your phone number">
+            <input type="text" autocomplete="phone" required class="block w-full rounded-md border-0 p-1.5 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-800 text-xs sm:text-sm sm:leading-6" v-model="user.phone" placeholder="Enter your phone number">
           </div>
         </div>
         <div>
           <label class="block text-sm font-medium leading-6 ">Password</label>
           <div class="mt-2">
-            <input type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 p-1.5  outline-none shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-secondary-800 text-xs sm:text-sm sm:leading-6" v-model="user.password" placeholder="Enter your password">
+            <input type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 p-1.5  outline-none shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-800 text-xs sm:text-sm sm:leading-6" v-model="user.password" placeholder="Enter your password">
           </div>
         </div>
         <div>
           <button
             type="submit"
-            class="flex w-full justify-center rounded-md bg-secondary-800 px-3 py-4 md:py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-secondary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-800"
+            class="flex w-full justify-center rounded-md bg-primary-800 px-3 py-4 md:py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-800"
             v-if="!loading"
           >
             Login
           </button>
           <button
             type="button"
-            class="flex w-full justify-center items-center rounded-md bg-secondary-800 px-3 py-4 md:py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-secondary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-800 cursor-not-allowed " 
+            class="flex w-full justify-center items-center rounded-md bg-primary-800 px-3 py-4 md:py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-800 cursor-not-allowed " 
             disabled
             v-else
           >
@@ -59,13 +59,13 @@
 
       <p class="mt-10 text-center text-sm text-gray-500">
         Don't have an account?
-        <NuxtLink to="/register" class="font-semibold leading-6 text-secondary-800 hover:text-secondary-700">Register</NuxtLink>
+        <NuxtLink to="/register" class="font-semibold leading-6 text-primary-800 hover:text-primary-700">Register</NuxtLink>
       </p>
     </div>
 
     <div v-else class="sm:mx-auto sm:w-full sm:max-w-sm">
       <p class="mt-10 text-center font-bold leading-9 tracking-tight ">Redirecting...</p>
-      <p class="text-center leading-9 tracking-tight " >If this delays - <NuxtLink class="font-semibold text-sm underline text-secondary-800" to="/account/my">Refresh Now</NuxtLink></p>
+      <p class="text-center leading-9 tracking-tight " >If this delays - <NuxtLink class="font-semibold text-sm underline text-primary-800" to="/account/my">Refresh Now</NuxtLink></p>
     </div>
 
     

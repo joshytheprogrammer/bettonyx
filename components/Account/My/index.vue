@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col items-start justify-start md:gap-4 gap-6">
-    <h2 class="text-base md:text-2xl font-medium underline decoration-secondary-900 dark:decoration-secondary-600 underline-offset-8	decoration-2 text-gray-900 dark:text-gray-200">Your Profile</h2>
+    <h2 class="text-base md:text-2xl font-medium underline decoration-primary-900 dark:decoration-primary-600 underline-offset-8	decoration-2 text-gray-900 dark:text-gray-200">Your Profile</h2>
     <p v-if="loading">Loading...</p>
     <p v-else-if="error">An error occurred</p>
     <form v-else class="md:space-y-4 space-y-6" @submit.prevent="update">
@@ -15,8 +15,8 @@
             :disabled="disabledFields.firstName"
             v-model="user.firstName"
 
-            class="block w-full rounded-tl-md rounded-bl-md  border-0 py-1.5 pl-1.5 pr-20 text-black dark:text-white shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-800 text-xs sm:text-sm sm:leading-6 disabled:cursor-not-allowed" />
-            <button type="button" class="py-1.5 px-2 bg-green-600 text-white rounded-tr-md rounded-br-md text-base" @click="enableField('firstName')" >
+            class="block w-full rounded-tl-md rounded-bl-md  border-0 py-1.5 pl-1.5 pr-20 text-black dark:text-white shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-800 text-xs sm:text-sm sm:leading-6 disabled:cursor-not-allowed" />
+            <button type="button" class="py-1.5 px-2 bg-primary-600 text-white rounded-tr-md rounded-br-md text-base" @click="enableField('firstName')" >
               <UIcon name="i-carbon-edit"  />
             </button>
           </div>
@@ -31,8 +31,8 @@
             :disabled="disabledFields.lastName"
             v-model="user.lastName"
             
-            class="block w-full rounded-tl-md rounded-bl-md  border-0 py-1.5 pl-1.5 pr-20 text-black dark:text-white shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-800 text-xs sm:text-sm sm:leading-6 disabled:cursor-not-allowed" />
-            <button type="button" class="py-1.5 px-2 bg-green-600 text-white rounded-tr-md rounded-br-md text-base" @click="enableField('lastName')" >
+            class="block w-full rounded-tl-md rounded-bl-md  border-0 py-1.5 pl-1.5 pr-20 text-black dark:text-white shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-800 text-xs sm:text-sm sm:leading-6 disabled:cursor-not-allowed" />
+            <button type="button" class="py-1.5 px-2 bg-primary-600 text-white rounded-tr-md rounded-br-md text-base" @click="enableField('lastName')" >
               <UIcon name="i-carbon-edit" />
             </button>
           </div>
@@ -46,7 +46,7 @@
             :disabled="true"
             v-model="user.email"
             
-            class="block w-full rounded-md border-0 py-1.5 pl-1.5 pr-20 text-black dark:text-white shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-800 text-xs sm:text-sm sm:leading-6 disabled:cursor-not-allowed" />
+            class="block w-full rounded-md border-0 py-1.5 pl-1.5 pr-20 text-black dark:text-white shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-800 text-xs sm:text-sm sm:leading-6 disabled:cursor-not-allowed" />
         </div>
         <div>
           <label class="block text-xs sm:text-sm font-medium leading-6 ">Phone</label>
@@ -57,10 +57,10 @@
             :disabled="true"
             v-model="user.phone"
             
-            class="block w-full rounded-md border-0 py-1.5 pl-1.5 pr-20 text-black dark:text-white shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-800 text-xs sm:text-sm sm:leading-6 disabled:cursor-not-allowed" />
+            class="block w-full rounded-md border-0 py-1.5 pl-1.5 pr-20 text-black dark:text-white shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-800 text-xs sm:text-sm sm:leading-6 disabled:cursor-not-allowed" />
         </div>
       </div>
-      <UButton type="submit" label="Update" class="text-xs md:text-sm p-4 md:p-2 bg-secondary-800 " />
+      <UButton type="submit" label="Update" class="text-xs md:text-sm p-4 md:p-2 bg-primary-800 " />
     </form>
   </div>
 </template>

@@ -3,7 +3,7 @@
     <!-- {{ betslipStore.getBetSlip }} -->
     <h2 class="font-normal text-2xl pb-4">Betslip</h2>
     <div class="border-y py-4 flex justify-between" v-if="betslipStore.getBetCount > 0">
-      <span class="underline underline-offset-8 decoration-secondary-700 capitalize">{{ betslipStore.getBetType }}s</span>
+      <span class="underline underline-offset-8 decoration-primary-700 capitalize">{{ betslipStore.getBetType }}s</span>
     </div>
     <div class="" v-if="betslipStore.getBetCount > 0">
       <div class="flex flex-col">
@@ -24,7 +24,7 @@
       </div>
       <div class="flex flex-col gap-3 py-4">
         <div class="w-full">
-          <input type="text" class="w-full rounded-md border-0 p-1.5 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-secondary-800 sm:text-sm sm:leading-6 bg-gray-200 dark:bg-transparent focus:bg-transparent" placeholder="Stake Amount" v-model="betslipStore.betAmount" />
+          <input type="text" class="w-full rounded-md border-0 p-1.5 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-primary-800 sm:text-sm sm:leading-6 bg-gray-200 dark:bg-transparent focus:bg-transparent" placeholder="Stake Amount" v-model="betslipStore.betAmount" />
         </div>
         <div class="flex justify-between">
           <span>Amount</span>
@@ -54,8 +54,8 @@
         </div>
       </div>
       <div class="py-4">
-        <NuxtLink v-if="!userStore.isAuthenticated" to="/login" class="block bg-secondary-800 text-center w-full rounded-md text-white py-2 text-sm">Sign in to Place Bet</NuxtLink>
-        <UButton v-else :loading="loading" :disabled="loading" class="bg-secondary-800 flex items-center justify-center hover:bg-secondary-900 text-center w-full rounded-md text-white py-2 text-sm" @click="placeBet">Place Bet</UButton>
+        <NuxtLink v-if="!userStore.isAuthenticated" to="/login" class="block bg-primary-800 text-center w-full rounded-md text-white py-2 text-sm">Sign in to Place Bet</NuxtLink>
+        <UButton v-else :loading="loading" :disabled="loading" class="bg-primary-800 flex items-center justify-center hover:bg-primary-900 text-center w-full rounded-md text-white py-2 text-sm" @click="placeBet">Place Bet</UButton>
       </div>
     </div>
     <div class="space-y-4" v-else>

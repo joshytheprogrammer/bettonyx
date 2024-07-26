@@ -1,6 +1,6 @@
 <template>
   <div class="hidden lg:block">
-    <nav class="bg-main-800 w-full px-4 sm:px-8 md:px-8 lg:px-18 py-8 ">
+    <nav class="bg-primary-800 w-full px-4 sm:px-8 md:px-8 lg:px-18 py-8 ">
       <div class="lg:max-w-[80%] flex items-center justify-between mx-auto">
         <div class="w-fit">
           <NuxtLink to="/">
@@ -33,7 +33,6 @@
               @click="isDark = !isDark"
             />
           </div>
-          <UButton v-if="userStore.isAuthenticated" @click="logout" >Logout</UButton>
         </div>
       </div>
     </nav>   

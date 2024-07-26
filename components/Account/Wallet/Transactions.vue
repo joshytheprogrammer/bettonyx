@@ -9,60 +9,22 @@
     </p>
 
     <div v-else class="w-full md:h-96 md:overflow-auto border rounded-md shadow-sm">
-      <div v-for="item in transactions" :key="item.id">
-        <div v-if="item.type === 'deposit'" class="py-4 px-5 flex items-center justify-between gap-12 border-b border-black dark:border-white">
-          <div class="space-y-4">
-            <h3 class="text-sm md:text-base font-semibold">Deposit</h3>
-            <p class="text-xs md:text-sm  font-normal">TNB-{{ item.id }}</p>
-          </div>
-          <p class="text-secondary-900 dark:text-secondary-600 text-xs md:text-sm  font-normal">
-            <span>+</span>
-            {{
-              new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(item.amount)
-            }}
-          </p>
+      <div v-for="item in transactions" :key="item.id" class="py-4 px-5 flex items-center justify-between gap-12 border-b border-black dark:border-white">
+        <div class="space-y-4">
+          <h3 class="text-sm md:text-base font-semibold">
+            {{ getItemTitle(item) }}
+            <sup v-if="item.type === 'withdrawal' && item.status != 'completed'" class="text-[8px]">({{ item.status }})</sup>
+          </h3>
+          <p class="text-[8px] md:text-sm font-normal">TNB-{{ item.id }}</p>
         </div>
-        <div v-if="item.type === 'withdrawal'" class="py-4 px-5 flex items-center justify-between gap-12 border-b border-black dark:border-white">
-          <div class="space-y-4">
-            <h3 class="text-sm md:text-base font-semibold ">
-              Withdrawal <sup v-if="item.status != 'completed'" class="text-[8px]
-              " >({{ item.status }})</sup>
-            </h3>
-            <p class="text-xs md:text-sm  font-normal">TNB-{{ item.id }}</p>
-          </div>
-          <div class="text-sm font-normal space-y-2">
-            <p class="text-red-900 dark:text-red-600 ">
-              <span>-</span>
-              {{
-                new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(item.amount)
-              }}
-            </p>
-            <a class="block cursor-pointer text-center underline text-xs mx-auto" @click="checkWithdrawalStatus(item.reference)" v-if="item.status == 'pending'">Refresh</a>
-          </div>
-        </div>
-        <div v-if="item.type === 'bet_hold'" class="py-4 px-5 flex items-center justify-between gap-12 border-b border-black dark:border-white">
-          <div class="space-y-4">
-            <h3 class="text-sm md:text-base font-semibold">Bet Hold</h3>
-            <p class="text-xs md:text-sm  font-normal">TNB-{{ item.id }}</p>
-          </div>
-          <p class="text-red-900 dark:text-red-600 text-xs md:text-sm  font-normal">
-            <span>-</span>
-            {{
-              new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(item.amount)
-            }}
-          </p>
-        </div>
-        <div v-if="item.type === 'bet_payout'" class="py-4 px-5 flex items-center justify-between gap-12 border-b border-black dark:border-white">
-          <div class="space-y-4">
-            <h3 class="text-sm md:text-base font-semibold">Bet Payout</h3>
-            <p class="text-xs md:text-sm  font-normal">TNB-{{ item.id }}</p>
-          </div>
-          <p class="text-secondary-900 dark:text-secondary-600 text-xs md:text-sm  font-normal">
-            <span>+</span>
-            {{
-              new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(item.amount)
-            }}
-          </p>
+        <div :class="getAmountClass(item)">
+          <span>{{ getAmountSign(item) }}</span>
+          {{
+            new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(item.amount)
+          }}
+          <a v-if="item.type === 'withdrawal' && item.status == 'pending'" class="block cursor-pointer text-center underline text-xs mx-auto" @click="checkWithdrawalStatus(item.reference)">
+            Refresh
+          </a>
         </div>
       </div>
     </div>
@@ -127,6 +89,31 @@ async function checkWithdrawalStatus(ref) {
     toast.add({title: 'An error occurred', description: 'Contact support if your having transfer issues.', color: 'red'})
   });
 
+}
+
+function getItemTitle(item) {
+  switch (item.type) {
+    case "deposit":
+      return "Deposit";
+    case "withdrawal":
+      return "Withdrawal";
+    case "bet_hold":
+      return "Bet Hold";
+    case "bet_payout":
+      return "Bet Payout";
+    default:
+      return "";
+  }
+}
+
+function getAmountClass(item) {
+  return item.type === "withdrawal" || item.type === "bet_hold" 
+    ? "text-red-900 dark:text-red-600 text-xs md:text-sm font-normal space-y-2" 
+    : "text-secondary-900 dark:text-secondary-600 text-xs md:text-sm font-normal";
+}
+
+function getAmountSign(item) {
+  return item.type === "deposit" || item.type === "bet_payout" ? "+" : "-";
 }
 </script>
 

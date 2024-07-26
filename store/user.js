@@ -32,7 +32,7 @@ export const useUserStore = defineStore('user', {
       useCookie('isAuthenticated').value = false
       useCookie('uid').value = null
       
-      this.auth.uid = null
+      this.auth.uid = ''
       this.auth.isAuthenticated = false
       this.user.email = null
       this.user.phone = null
