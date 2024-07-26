@@ -1,6 +1,6 @@
 <template>
   <div class="hidden lg:block">
-    <nav class="bg-primary-700 dark:bg-primary-800 dark:bg-primary-800 w-full px-4 sm:px-8 md:px-8 lg:px-18 py-8 ">
+    <nav class="bg-primary-700 dark:bg-primary-800 w-full px-4 sm:px-8 md:px-8 lg:px-18 py-8 ">
       <div class="lg:max-w-[80%] flex items-center justify-between mx-auto">
         <div class="w-fit">
           <NuxtLink to="/">
