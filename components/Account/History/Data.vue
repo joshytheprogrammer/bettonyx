@@ -24,16 +24,16 @@
             </div>
           </div>
 
-          <div class="flex gap-4">
-            <div class="space-y-2">
-              <h2>Total Stake</h2>
-              <p class="text-right md:font-semibold text-sm md:text-base">
+          <div class="flex gap-4 text-xs sm:text-sm md:text-base">
+            <div class="space-y-4 md:space-y-2">
+              <p >Total Stake</p>
+              <p class="text-right md:font-semibold ">
                 {{ new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(item.betAmount) }}
               </p>
             </div>
-            <div class="space-y-2">
-              <h2>Total Return</h2>
-              <p class="text-right md:font-semibold text-sm md:text-base">
+            <div class="space-y-4 md:space-y-2">
+              <p>Total Return</p>
+              <p class="text-right md:font-semibold">
                 {{ new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(item.potentialPayout) }}
               </p>
             </div>

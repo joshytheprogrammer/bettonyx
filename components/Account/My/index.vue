@@ -4,7 +4,7 @@
     <p v-if="loading">Loading...</p>
     <p v-else-if="error">An error occurred</p>
     <form v-else class="md:space-y-4 space-y-6" @submit.prevent="update">
-      <div class="grid grid-cols-2 items-center gap-4">
+      <div class="space-y-4 md:space-y-0 md:grid grid-cols-2 items-center gap-4">
         <div>
           <label class="block text-xs md:text-sm font-medium leading-6 ">First Name</label>
           <div class="inline-flex items-center">
