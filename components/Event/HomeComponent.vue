@@ -2,7 +2,7 @@
   <div class="border shadow-md rounded-md w-full">
     <h2 class="font-normal text-2xl py-4 px-2">Events</h2>
     <p v-if="loading">Loading...</p>
-    <div class="flex text-base" v-if="events">
+    <div class="flex flex-col text-base" v-if="events">
       <div v-for="item in events" @click="router.push('/events/'+item.id)" class="cursor-pointer hover:bg-primary-900 hover:text-white w-full px-2 py-4" >
         <span class="text-sm md:text-base uppercase" >{{ item.name }}</span>
       </div>
