@@ -9,10 +9,8 @@
         <UTextarea placeholder="Add your description here..." />
       </UFormGroup>
       
-    <UButton type="submit" color="black">
-      Submit
-    </UButton>
-  </UForm>
+      <UButton type="submit" class="text-xs rounded-md md:text-sm px-4 py-2 md:p-2 bg-primary-700 text-white dark:text-white dark:bg-primary-800 hover:bg-primary-700">Update</UButton> 
+    </UForm>
   </div>
 </template>
 
