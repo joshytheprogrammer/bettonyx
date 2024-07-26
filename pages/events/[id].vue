@@ -14,7 +14,7 @@
           <tbody>
             <tr v-for="(team, index) in event.teams" :key="index">
               <td class="py-2 px-4 border-b border-gray-200 uppercase">{{ team.name }}</td>
-              <td class="py-2 px-4 border-b border-gray-200">{{ team.odds }}</td>
+              <td class="py-2 px-4 border-b border-gray-200">{{ parseFloat(team.odds).toFixed(2) }}</td>
               <td class="py-2 px-4 border-b border-gray-200">
                 <button v-if="selectedTeam.id !== team.id" @click="selectTeam(team)" class="bg-primary-600 text-white py-1 px-3 rounded">Choose Team</button>
                 <button v-else class="bg-primary-800 opacity-60 text-white py-1 px-3 rounded cursor-not-allowed">Chosen</button>
@@ -35,7 +35,7 @@
       <div class="border shadow-md rounded-md w-full py-4 px-2 space-y-4" v-if="selectedTeam.id">
         <h2 class="text-lg md:text-2xl pb-6 underline underline-offset-[16px] decoration-primary-500">Events Slip</h2>
         <div class="flex gap-4 md:gap-2 items-center font-semibold">
-          <p class="w-fit bg-primary-500 dark:bg-primary-600 text-white rounded-md p-3 text-sm" >{{ selectedTeam.odds }}x</p>
+          <p class="w-fit bg-primary-500 dark:bg-primary-600 text-white rounded-md p-3 text-sm" >{{ parseFloat(selectedTeam.odds).toFixed(2) }}x</p>
           <p class="text-base md:text-lg" >{{ selectedTeam.name }}</p>
         </div>
         <div class="flex flex-col gap-2 py-4">
@@ -91,7 +91,7 @@ const event = reactive({});
 const loading = ref(false);
 
 let selectedTeam = reactive({});
-const amount = ref(null);
+const amount = ref('');
 const potentialPayout = computed(() => parseFloat(amount.value) * parseFloat(selectedTeam.odds));
 
 const id = route.params.id;
