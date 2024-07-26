@@ -1,13 +1,13 @@
 <template>
   <div class="hidden lg:block">
-    <nav class="bg-primary-800 w-full px-4 sm:px-8 md:px-8 lg:px-18 py-8 ">
+    <nav class="bg-primary-700 dark:bg-primary-800 dark:bg-primary-800 w-full px-4 sm:px-8 md:px-8 lg:px-18 py-8 ">
       <div class="lg:max-w-[80%] flex items-center justify-between mx-auto">
         <div class="w-fit">
           <NuxtLink to="/">
             <!-- <Icon class="text-green-800" size="4em" name="ph:car-fill" /> -->
             <h1 class="font-bold text-xl md:text-2xl lg:text-4xl px-2 text-white"> 
               BettonyX<sup class="text-xs text-white pr-2">™</sup>
-              <sup class="text-xs bg-secondary-800 text-white p-1 rounded-md">Beta</sup>
+              <sup class="text-xs bg-primary-950 text-white p-1 rounded-md">Beta</sup>
             </h1>
           </NuxtLink>
         </div>

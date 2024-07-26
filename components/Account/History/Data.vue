@@ -185,7 +185,7 @@ function reverseEngineerID(generatedID) {
 function getStatusClass(status) {
   switch (status) {
     case 'won':
-      return 'bg-green-700';
+      return 'bg-primary-700 dark:bg-primary-800';
     case 'lost':
       return 'bg-red-700';
     case 'pending':

@@ -3,7 +3,7 @@
     <AppNavBar />
     <AppNavMBar />
     <main class="">
-      <NuxtLoadingIndicator />
+      <NuxtLoadingIndicator color="#76dbff" :height="4" />
       <NuxtPage  />
     </main>
     <UNotifications />

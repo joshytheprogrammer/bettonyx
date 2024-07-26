@@ -36,7 +36,7 @@ async function logout() {
 }
 
 .links .router-link-exact-active {
-  @apply bg-primary-700 dark:bg-primary-800 text-white; 
+  @apply bg-primary-700 dark:bg-primary-800 dark:bg-primary-800 text-white; 
 }
 
 </style>

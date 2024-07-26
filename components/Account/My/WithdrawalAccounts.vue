@@ -8,7 +8,7 @@
         No accounts found
       </p>
       <div v-else class="grid gap-8 grid-cols-1 md:grid-cols-2">
-        <div v-for="item in withdrawal_accounts" :id="item.id" class="bg-primary-700 text-white dark:bg-primary-950  rounded-md flex justify-between items-center gap-8 px-8 py-4">
+        <div v-for="item in withdrawal_accounts" :id="item.id" class="bg-primary-700 dark:bg-primary-800 text-white dark:bg-primary-950  rounded-md flex justify-between items-center gap-8 px-8 py-4">
           <div class="md:space-y-2 space-y-4 leading-8">
             <h2 class="text-sm font-semibold leading-8" >{{ item.bank.name }}</h2>
             <p class="text-xs md:text-sm font-normal uppercase" >{{ item.name }}</p>

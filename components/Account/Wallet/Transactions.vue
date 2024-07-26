@@ -109,7 +109,7 @@ function getItemTitle(item) {
 function getAmountClass(item) {
   return item.type === "withdrawal" || item.type === "bet_hold" 
     ? "text-red-900 dark:text-red-600 text-xs md:text-sm font-normal space-y-2" 
-    : "text-secondary-900 dark:text-secondary-600 text-xs md:text-sm font-normal";
+    : "text-primary-900 dark:text-primary-600 text-xs md:text-sm font-normal";
 }
 
 function getAmountSign(item) {
