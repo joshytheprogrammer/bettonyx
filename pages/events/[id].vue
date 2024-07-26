@@ -33,14 +33,14 @@
         <!-- <pre class="mt-4">{{ event }}</pre> -->
       </div>
       <div class="border shadow-md rounded-md w-full py-4 px-2 space-y-4" v-if="selectedTeam.id">
-        <h2 class="text-lg md:text-2xl pb-6 underline underline-offset-[16px] decoration-primary-500">Events Slip</h2>
+        <h2 class="text-lg md:text-2xl pb-8 underline underline-offset-[16px] decoration-primary-500">Events Slip</h2>
         <div class="flex gap-4 md:gap-2 items-center font-semibold">
           <p class="w-fit bg-primary-500 dark:bg-primary-600 text-white rounded-md p-3 text-sm" >{{ parseFloat(selectedTeam.odds).toFixed(2) }}x</p>
           <p class="text-base md:text-lg" >{{ selectedTeam.name }}</p>
         </div>
         <div class="flex flex-col gap-2 py-4">
           <div class="w-full">
-            <input type="text" class="w-full rounded-md border-2 border-primary-300 p-1.5 shadow-sm outline-none placeholder:text-gray-500 sm:text-sm sm:leading-6 bg-gray-200 dark:bg-transparent focus:bg-transparent" placeholder="Stake Amount" v-model="amount" />
+            <input type="text" class="w-full rounded-md border-2 border-primary-300 p-1.5 shadow-sm outline-none placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-primary-800 sm:text-sm sm:leading-6 bg-gray-200 dark:bg-transparent focus:bg-transparent" placeholder="Stake Amount" v-model="amount" />
           </div>
           <div class="flex justify-between">
             <span>Amount</span>
