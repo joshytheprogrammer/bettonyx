@@ -1,6 +1,6 @@
 <template>
-  <div class="border px-2">
-    <h2 class="font-medium text-2xl py-4">Covenant Upcoming</h2>
+  <div class="border shadow-md rounded-md w-full px-2">
+    <h2 class="font-normal text-2xl py-4">Covenant Upcoming</h2>
     <p class="" v-if="loading">Loading...</p>
     <div v-if="matches">
       <!-- {{ matches }} -->

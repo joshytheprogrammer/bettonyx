@@ -1,5 +1,5 @@
 <template>
-  <div class="border py-4 px-2">
+  <div class="border shadow-md rounded-md w-full py-4 px-2">
     <!-- {{ betslipStore.getBetSlip }} -->
     <h2 class="font-normal text-2xl pb-4">Betslip</h2>
     <div class="border-y py-4 flex justify-between" v-if="betslipStore.getBetCount > 0">

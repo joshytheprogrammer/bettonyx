@@ -34,14 +34,14 @@
         <div>
           <button
             type="submit"
-            class="flex w-full justify-center rounded-md bg-primary-800 py-4 md:py-1.5  text-sm font-semibold leading-6 text-white shadow-sm hover:bg-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-800"
+            class="flex w-full justify-center rounded-md bg-primary-800 py-4 md:py-1.5  text-sm font-semibold leading-6 text-white shadow-sm hover:bg-primary-700 dark:bg-primary-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-800"
             v-if="!loading"
           >
             Create account
           </button>
           <button
             type="button"
-            class="flex w-full justify-center items-center rounded-md bg-primary-800  py-4 md:py-1.5  text-sm font-semibold leading-6 text-white shadow-sm hover:bg-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-800 cursor-not-allowed " 
+            class="flex w-full justify-center items-center rounded-md bg-primary-800  py-4 md:py-1.5  text-sm font-semibold leading-6 text-white shadow-sm hover:bg-primary-700 dark:bg-primary-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-800 cursor-not-allowed " 
             disabled
             v-else
           >

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-8 justify-start rounded-md px-4 py-6 bg-primary-700" >
+  <div class="flex flex-col gap-8 justify-start rounded-md px-4 py-6 bg-primary-700 dark:bg-primary-800" >
     <div class="flex items-center">
       <p class="mr-8 font-bold md:text-3xl text-lg text-white">
         {{ 

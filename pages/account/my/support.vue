@@ -1,9 +1,9 @@
 <template>
   <div class="block space-y-4 lg:space-y-0 lg:flex gap-4 lg:max-w-[80%] mx-auto px-4 sm:px-8 md:px-8 lg:px-18 my-8">
     <AccountNav />
-    <div class="w-full shadow-md rounded-md md:border px-2 md:px-4 py-4">
-      <AccountMy />
-      <AccountMyWithdrawalAccounts />
+    <div class="block lg:grid grid-cols-2 items-start justify-start gap-4 shadow-md rounded-md w-full md:border px-2 md:px-4 py-4">
+      <AccountIssueList />
+      <AccountIssueCreate />
     </div>
   </div>
 </template>
@@ -11,6 +11,8 @@
 definePageMeta({
   middleware: ['auth']
 });
+
+const route = useRoute();
 </script>
 
 <style lang="scss" scoped>

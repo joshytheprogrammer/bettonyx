@@ -4,7 +4,7 @@
     <p v-if="loading">Loading...</p>
     <p v-else-if="error">An error occurred</p>
     <form v-else class="md:space-y-4 space-y-6" @submit.prevent="update">
-      <div class="grid grid-cols-2 items-center gap-4">
+      <div class="space-y-4 md:space-y-0 md:grid grid-cols-2 items-center gap-4">
         <div>
           <label class="block text-xs md:text-sm font-medium leading-6 ">First Name</label>
           <div class="inline-flex items-center">
@@ -16,7 +16,7 @@
             v-model="user.firstName"
 
             class="block w-full rounded-tl-md rounded-bl-md  border-0 py-1.5 pl-1.5 pr-20 text-black dark:text-white shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-800 text-xs sm:text-sm sm:leading-6 disabled:cursor-not-allowed" />
-            <button type="button" class="py-1.5 px-2 bg-primary-600 text-white rounded-tr-md rounded-br-md text-base" @click="enableField('firstName')" >
+            <button type="button" class="py-1.5 px-2 bg-primary-700 text-white dark:bg-primary-800  rounded-tr-md rounded-br-md text-base" @click="enableField('firstName')" >
               <UIcon name="i-carbon-edit"  />
             </button>
           </div>
@@ -32,7 +32,7 @@
             v-model="user.lastName"
             
             class="block w-full rounded-tl-md rounded-bl-md  border-0 py-1.5 pl-1.5 pr-20 text-black dark:text-white shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-800 text-xs sm:text-sm sm:leading-6 disabled:cursor-not-allowed" />
-            <button type="button" class="py-1.5 px-2 bg-primary-600 text-white rounded-tr-md rounded-br-md text-base" @click="enableField('lastName')" >
+            <button type="button" class="py-1.5 px-2 bg-primary-700 text-white dark:bg-primary-800  rounded-tr-md rounded-br-md text-base" @click="enableField('lastName')" >
               <UIcon name="i-carbon-edit" />
             </button>
           </div>
@@ -60,7 +60,7 @@
             class="block w-full rounded-md border-0 py-1.5 pl-1.5 pr-20 text-black dark:text-white shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-800 text-xs sm:text-sm sm:leading-6 disabled:cursor-not-allowed" />
         </div>
       </div>
-      <UButton type="submit" label="Update" class="text-xs md:text-sm p-4 md:p-2 bg-primary-800 " />
+      <button type="submit" class="text-xs rounded-md md:text-sm p-4 md:p-2 bg-primary-700 text-white dark:bg-primary-800 ">Update</button>
     </form>
   </div>
 </template>
