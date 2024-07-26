@@ -1,5 +1,5 @@
 <template>
-  <nav class="flex lg:hidden justify-between items-center m-auto max-w-full text-center p-0 rounded-none border-0 bg-none bg-main-800 px-4 sm:px-8 md:px-8 lg:px-18 py-8 ">
+  <nav class="flex lg:hidden justify-between items-center m-auto max-w-full text-center p-0 rounded-none border-0 bg-none bg-primary-800 px-4 sm:px-8 md:px-8 lg:px-18 py-8 ">
     <div class="w-fit">
       <NuxtLink to="/" class=" flex items-center space-around no-underline">
         <!-- <Icon class="text-green-800" size="4em" name="ph:car-fill" /> -->
@@ -11,10 +11,10 @@
     </div>
     <div class="flex gap-2 items-center">
       <div class="flex gap-2 items-center" v-if="!userStore.isAuthenticated">
-        <button class="text-xs block text-center px-2 py-4 bg-secondary-800 text-white md:font-semibold rounded-md">
+        <button class="text-xs block text-center px-2 py-4 bg-primary-800 text-white md:font-semibold rounded-md">
           <NuxtLink to="/login">Login</NuxtLink>
         </button>
-        <button class="text-xs block text-center px-2 py-4 bg-transparent text-white md:font-semibold rounded-md border-2 border-secondary-800 ">
+        <button class="text-xs block text-center px-2 py-4 bg-transparent text-white md:font-semibold rounded-md border-2 border-primary-800 ">
           <NuxtLink to="/register">Register</NuxtLink>
         </button>
       </div>

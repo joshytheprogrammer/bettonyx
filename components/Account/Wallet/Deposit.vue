@@ -5,7 +5,7 @@
       <form v-if="!verify" class="flex flex-col gap-4" @submit.prevent="submit">
         <UInput class="text-xs" type="text" placeholder="Enter deposit amount" v-model="amount" />
         <div class="flex justify-between items-center">
-          <UButton :loading="loading" class="bg-secondary-900 w-fit py-4 px-5 md:py-2 md:px-3 "type="submit">Deposit</UButton>
+          <UButton :loading="loading" class="bg-primary-900 w-fit py-4 px-5 md:py-2 md:px-3 "type="submit">Deposit</UButton>
           <NuxtLink to="/account/my/wallet" class="text-red-400 underline text-sm" >Close</NuxtLink>
         </div>
       </form>
@@ -17,7 +17,7 @@
         description="If your verification is taking time. Save this code. You will need it for customer support. -- us9ImAWLMhKS95C --"
         :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'white', variant: 'link', padded: true }"
         /> -->
-        <p class="bg-main-800 px-2 py-2 text-sm rounded-md" >If your verification is taking too long. Contact customer support with this ID <code>{{route.query.reference}}</code></p>
+        <p class="bg-primary-800 px-2 py-2 text-sm rounded-md" >If your verification is taking too long. Contact customer support with this ID <code>{{route.query.reference}}</code></p>
         <HelpersLoaderDot />
         <p v-if="depositAmount" class="text-sm md:text-base">
           Verifying 

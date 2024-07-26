@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-8 justify-start rounded-md px-4 py-6 bg-secondary-700" >
+  <div class="flex flex-col gap-8 justify-start rounded-md px-4 py-6 bg-primary-700" >
     <div class="flex items-center">
       <p class="mr-8 font-bold md:text-3xl text-lg text-white">
         {{ 
@@ -18,7 +18,7 @@
     </UTooltip>
     </div>
     <div class="flex justify-between items-center gap-8 text-sm font-semibold">
-      <NuxtLink class="bg-white rounded-md px-4 md:py-2 py-4  text-secondary-900 " to="?action=deposit">Fund Account</NuxtLink>
+      <NuxtLink class="bg-white rounded-md px-4 md:py-2 py-4  text-primary-900 " to="?action=deposit">Fund Account</NuxtLink>
       <NuxtLink class="text-white" to="?action=withdraw" >Withdraw</NuxtLink>
     </div>
   </div>
