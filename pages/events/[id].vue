@@ -133,7 +133,7 @@ async function placeEventBet() {
         userID: userStore.getUser.uid,
         eventID: event.id,
         betType: 'event',
-        teamBetOn: selectedTeam.name,
+        teamBetOn: selectedTeam.id,
         betAmount: amount.value,
         oddsAtBetTime: selectedTeam.odds,
       }),
