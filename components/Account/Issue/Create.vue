@@ -1,11 +1,11 @@
 <template>
-  <div class="block space-y-8">
+  <div class="block space-y-4 md:space-y-8">
     <h1 class="md:text-2xl text-lg font-medium leading-9 tracking-tight">Create new issue</h1>
     <UForm class="space-y-6" :state="issue" @submit="submitIssue">
-      <UFormGroup label="Add a title" name="title">
-        <UInput v-model="issue.title" placeholder="Title" />
+      <UFormGroup :label="'Add a title - '+ issue.title.length + ' characters'" name="title">
+        <UInput v-model="issue.title" placeholder="Title (Less that 100 characters)" />
       </UFormGroup>
-      <UFormGroup label="Add a description" name="description">
+      <UFormGroup label="Add a description">
         <ClientOnly>
           <HelpersTiptapEditor v-model="issue.description"  placeholder="Add your description here..."  />
           <template #fallback>
@@ -25,15 +25,18 @@
 import { collection, addDoc, Timestamp } from 'firebase/firestore'
 import { useUserStore } from "@/store/user";
 
+const {validate} = useCreateUtilities();
 
 const db = useFirestore();
 const toast = useToast();
 const userStore = useUserStore();
+const route = useRoute();
+const router = useRouter();
 
 const uid = userStore.getUser.uid;
 const issue = reactive({
-  title: '',
-  description: 'Describe your issue here...',
+  title: route.query.issue_title ? route.query.issue_title : '',
+  description: route.query.issue_description ? route.query.issue_description : 'Describe your issue here...',
   createdAt: Timestamp.now(),
   updatedAt: Timestamp.now(),
   resolvedAt: null,
@@ -46,8 +49,14 @@ let loading = ref(false);
 async function submitIssue() {
   loading.value = true;
 
-  if(issue.description === 'Describe your issue here...'){
-    toast.add({title: 'Invalid description', color: 'red'});
+  if(issue.description === 'Describe your issue here...' || issue.description === '<p></p>' || issue.title === ''){
+    toast.add({title: 'Invalid issue submitted', color: 'red'});
+    loading.value = false; 
+    return
+  }
+
+  if(issue.title.length > 99) {
+    toast.add({title: 'Issue title must be less than 100 characters..', color: 'red'})
     loading.value = false; 
     return
   }
@@ -63,6 +72,7 @@ async function submitIssue() {
     })
     .finally(() => {
       loading.value = false;
+      router.push('/account/my/support?')
     });
 }
 </script>
