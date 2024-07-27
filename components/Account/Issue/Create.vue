@@ -1,9 +1,9 @@
 <template>
   <div class="block space-y-8">
     <h1 class="md:text-2xl text-lg font-medium leading-9 tracking-tight">Create new issue</h1>
-    <UForm class="space-y-6" :state="issue">
+    <UForm class="space-y-6" :state="issue" @submit="submitIssue">
       <UFormGroup label="Add a title" name="title">
-        <UInput  placeholder="Title" />
+        <UInput v-model="issue.title" placeholder="Title" />
       </UFormGroup>
       <UFormGroup label="Add a description" name="description">
         <ClientOnly>
@@ -15,7 +15,7 @@
 
       </UFormGroup>
       
-      <UButton type="submit" :loading="loading" class=" text-xs rounded-md md:text-sm px-4 py-2 md:p-2 bg-primary-700 text-white dark:text-white dark:bg-primary-800 hover:bg-primary-700">Update</UButton> 
+      <UButton type="submit" :loading="loading" class=" text-xs rounded-md md:text-sm px-4 py-2 md:p-2 bg-primary-700 text-white dark:text-white dark:bg-primary-800 hover:bg-primary-700">Submit</UButton> 
     </UForm>
 
   </div>
@@ -46,11 +46,15 @@ let loading = ref(false);
 async function submitIssue() {
   loading.value = true;
 
-  if(issue.description === 'Describe your issue here...'){toast.add({title: 'Invalid description'}); return}
+  if(issue.description === 'Describe your issue here...'){
+    toast.add({title: 'Invalid description', color: 'red'});
+    loading.value = false; 
+    return
+  }
 
   await addDoc(collection(db, 'issues'), issue)
     .then(() => {
-      toast.add({ title: 'Issues Created', description: 'Support will reach out shortly' });
+      toast.add({ title: 'Issue Submitted', description: 'Support will reach out to you shortly' });
       Object.assign(issue, {title: '', description: ''});
     })
     .catch((error) => {
