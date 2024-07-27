@@ -10,7 +10,10 @@ export default defineNuxtConfig({
     callbackUrl: '',
     googleApplicationCredentials: ''
   },
-  modules: ["@nuxt/ui", "@pinia/nuxt", "nuxt-vuefire"],
+  modules: ["@nuxt/ui", "@pinia/nuxt", "nuxt-vuefire", "nuxt-tiptap-editor"],
+  tiptap: {
+    prefix: "Tiptap", //prefix for Tiptap imports, composables not included
+  },
   vuefire: {
     auth: {
       enabled: true
