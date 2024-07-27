@@ -17,7 +17,9 @@ export default defineEventHandler(async (event) => {
     "callback_url": url+'/account/my/wallet?action=deposit&verify=true&amount='+rawBody.formData.amount,
     "metadata": {
       "cancel_action": config.callbackUrl+'/account/my/wallet?action=deposit&verify=true&amount='+rawBody.formData.amount+'&reference='+rawBody.formData.reference
-    }
+    },
+    // "subaccount": "ACCT_896rwfxsv8bxq0w", // Live
+    // "subaccount": "ACCT_vp0woul7mqyed49", // Test
   });
   
   try{
