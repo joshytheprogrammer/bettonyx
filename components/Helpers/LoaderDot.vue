@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="dots "></div>
+    <div class="dots"></div>
   </div>
 </template>
 
@@ -12,7 +12,7 @@
 .dots {
   width: 56px;
   height: 13.4px;
-  background: radial-gradient(circle closest-side,#0b7020 90%,#0000) 0 0/33% 100% space;
+  background: radial-gradient(circle closest-side,#007bff 90%,#0000) 0 0/33% 100% space;
   clip-path: inset(0 100% 0 0);
   animation: dots-e3xtdg 1.5s steps(4) infinite;
 }

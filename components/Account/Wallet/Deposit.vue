@@ -10,23 +10,26 @@
         </div>
       </form>
       <div class="w-full space-y-4" v-else>
-        <!-- <UAlert
-        title="Note"
-        class="w-full"
-        variant="solid"
-        description="If your verification is taking time. Save this code. You will need it for customer support. -- us9ImAWLMhKS95C --"
-        :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'white', variant: 'link', padded: true }"
-        /> -->
-        <p class="bg-primary-800 px-2 py-2 text-xl md:text-sm rounded-md" >If your verification is taking too long. Contact customer support with this ID <code>{{route.query.reference}}</code></p>
-        <HelpersLoaderDot />
-        <p v-if="depositAmount" class="text-sm md:text-base">
-          Verifying 
-          <span class="font-semibold">
-            {{ 
-              new Intl.NumberFormat('en-NG', {style: 'currency', currency: 'NGN'}).format(depositAmount)
-            }}
-          </span> 
-          Deposit
+        <p class="bg-primary-600 dark:bg-primary-800 text-white px-2 py-2 text-xl md:text-sm rounded-md" v-if="!errorMessage" >If your verification is taking too long. Contact customer support with this ID <code>{{route.query.reference}}</code></p>
+
+        <div v-if="!errorMessage" class="space-y-4" >
+          <HelpersLoaderDot />
+          <p v-if="depositAmount" class="text-sm md:text-base">
+            Verifying 
+            <span class="font-semibold">
+              {{ 
+                new Intl.NumberFormat('en-NG', {style: 'currency', currency: 'NGN'}).format(depositAmount)
+              }}
+            </span> 
+            Deposit
+          </p>
+        </div>
+
+        <p class="bg-primary-600 dark:bg-primary-800 text-white  px-2 py-2 text-xl md:text-sm rounded-md" v-if="errorMessage" >
+          You encountered an error during your deposit. If this was not expected,
+          <NuxtLink class="underline" :to="'/account/my/support?issue_title=Deposit+failed+unexpectedly&issue_description='+errorMessage">
+            click here
+          </NuxtLink> 
         </p>
       </div>
     </div>
@@ -47,6 +50,7 @@ const toast = useToast();
 const route = useRoute();
 const router = useRouter();
 
+const errorMessage = ref('')
 const amount  = ref('');
 const loading = ref(false);
 const verify = ref(false);
@@ -74,13 +78,15 @@ onMounted(async () => {
       }
     }).then((res) => {
       toast.add({title: 'Deposit successful'})
+      verify.value = false;
+      router.push('/account/my/wallet');
     }).catch((error) => {
       console.error('Deposit verification failed:', error);
+      errorMessage.value = buildErrorMessage(error, reference, depositAmount.value);
+
       toast.add({title: 'Deposit failed', color: 'red'})
     }).finally(async () => {
       await getBalance();
-      verify.value = false;
-      router.push('/account/my/wallet');
     })
 
   }
@@ -141,7 +147,19 @@ function validate() {
   return true;
 }
 
+function buildErrorMessage(error, reference, depositAmount) {
+    // Constructing the message with necessary info
+    let message = 
+    `
+    <p>Error: ${error}</p>
+    <p>Reference: ${reference}</p>
+    <p>Amount: ${depositAmount}</p>
+    <strong>-- DO NOT EDIT THE INFO ABOVE. DESCRIBE THE PROBLEM YOU ARE FACING HERE --</strong>
+    `;
 
+    // Encode the message for URL query
+    return encodeURIComponent(message);
+}
 </script>
 
 <style lang="scss" scoped>
