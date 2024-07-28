@@ -1,5 +1,5 @@
 <template>
-  <div class="block space-y-4 md:space-y-8">
+  <div class="block space-y-4 md:space-y-8 text-xs md:text-sm">
     <h1 class="md:text-2xl text-lg font-medium leading-9 tracking-tight mb-2">Your issues</h1>
     
     <!-- Search Input -->
@@ -7,7 +7,7 @@
       type="text" 
       v-model="searchQuery" 
       placeholder="Search issues" 
-      class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary-600"
+      class="w-full p-1.5 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-none"
     />
     
     <!-- Filter Buttons -->
@@ -42,7 +42,7 @@
       <UCard class="my-4 mx-0 md:mx-2" v-for="item in filteredIssues" :key="item.id">
         <template #header>
           <h2 
-            @click="router.push('?issue_id='+item.id)" 
+            @click="router.push('?issue_id='+item.id+'&status='+item.status)" 
             class="font-medium cursor-pointer leading-10 text-sm md:text-base hover:text-primary-800 dark:hover:text-primary-400 w-fit"
           >
             {{ item.title }}
@@ -55,7 +55,7 @@
               new Date(item.createdAt.toDate()).toLocaleDateString(undefined, {year: 'numeric', month: 'short', day: 'numeric'})
             }}</p>
             <UBadge v-if="item.status === 'open'" color="primary" label="open" />
-            <UBadge v-if="item.status === 'closed'" color="red" label="closed" />
+            <UBadge v-if="item.status === 'closed'" color="red" label="closed" :title="'Closed at '+ new Date(item.resolvedAt.toDate())" />
           </div>
         </template>
       </UCard>
@@ -66,11 +66,8 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, computed } from 'vue';
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { useUserStore } from "@/store/user";
-import { useRouter } from 'vue-router';
-import { useFirestore } from 'vuefire';
 
 const db = useFirestore();
 const userStore = useUserStore();
@@ -81,7 +78,7 @@ const issues = ref([]);
 const loading = ref(true);
 const error = ref(false);
 const searchQuery = ref('');
-const currentFilter = ref('all');
+const currentFilter = ref('open');
 
 const filterStatus = (status) => {
   currentFilter.value = status;
@@ -97,45 +94,43 @@ const filteredIssues = computed(() => {
     .sort((a, b) => new Date(b.createdAt.toDate()) - new Date(a.createdAt.toDate()));
 });
 
-onMounted(async () => {
-  const unsubscribe =onSnapshot(
-    query(
-      collection(db, 'issues'),
-      where('userID', '==', uid)
-    ),
-     (snapshot) => {
-      const newIssues = []; // Temporary array to store the fetched issues
+const unsubscribe = onSnapshot(
+  query(
+    collection(db, 'issues'),
+    where('userID', '==', uid)
+  ),
+    (snapshot) => {
+    const newIssues = []; // Temporary array to store the fetched issues
 
-      if (!snapshot.empty) {
-        snapshot.forEach((doc) => {
-          newIssues.push({
-            id: doc.id,
-            ...doc.data()
-          });
+    if (!snapshot.empty) {
+      snapshot.forEach((doc) => {
+        newIssues.push({
+          id: doc.id,
+          ...doc.data()
         });
+      });
 
-        // Remove duplicates based on the 'id' field
-        issues.value = newIssues
-          .filter((issue, index, self) =>
-            index === self.findIndex((t) => t.id === issue.id)
-          );
-      } else {
-        issues.value = [];
-      }
-
-      loading.value = false; // Clear loading state after processing
-    },
-    (error) => {
-      error.value = true;
-      console.log(error);
-      loading.value = false; // Clear loading state on error
+      // Remove duplicates based on the 'id' field
+      issues.value = newIssues
+        .filter((issue, index, self) =>
+          index === self.findIndex((t) => t.id === issue.id)
+        );
+    } else {
+      issues.value = [];
     }
-  );
 
-  // Clean up the listener when the component unmounts
-  onUnmounted(() => {
-    unsubscribe();
-  });
+    loading.value = false; // Clear loading state after processing
+  },
+  (error) => {
+    error.value = true;
+    console.log(error);
+    loading.value = false; // Clear loading state on error
+  }
+);
+
+// Clean up the listener when the component unmounts
+onUnmounted(() => {
+  unsubscribe();
 });
 </script>
 

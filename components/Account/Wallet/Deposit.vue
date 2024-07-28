@@ -10,7 +10,7 @@
         </div>
       </form>
       <div class="w-full space-y-4" v-else>
-        <p class="bg-primary-800 dark:bg-primary-400 px-2 py-2 text-xl md:text-sm rounded-md" >If your verification is taking too long. Contact customer support with this ID <code>{{route.query.reference}}</code></p>
+        <p class="bg-primary-600 dark:bg-primary-800 text-white px-2 py-2 text-xl md:text-sm rounded-md" v-if="!errorMessage" >If your verification is taking too long. Contact customer support with this ID <code>{{route.query.reference}}</code></p>
 
         <div v-if="!errorMessage" class="space-y-4" >
           <HelpersLoaderDot />
@@ -25,7 +25,7 @@
           </p>
         </div>
 
-        <p class="bg-primary-800 px-2 py-2 text-xl md:text-sm rounded-md" v-if="errorMessage" >
+        <p class="bg-primary-600 dark:bg-primary-800 text-white  px-2 py-2 text-xl md:text-sm rounded-md" v-if="errorMessage" >
           You encountered an error during your deposit. If this was not expected,
           <NuxtLink class="underline" :to="'/account/my/support?issue_title=Deposit+failed+unexpectedly&issue_description='+errorMessage">
             click here

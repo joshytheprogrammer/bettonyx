@@ -1,12 +1,17 @@
 <template>
   <div class="space-y-6" >
     <div class="block space-y-4" >
-      <h1 class="text-lg md:text-3xl font-medium mb-8" >{{ issue.title }}</h1>
+      <h1 class="text-lg md:text-3xl font-medium mb-8 leading-8" >{{ issue.title }}</h1>
       <div class="prose-sm" v-html="issue.description"></div>
-      <div class="flex justify-between flex-wrap text-xs md:text-sm">
+      <div class="flex justify-between items-center flex-wrap text-xs md:text-sm">
         <div class="">
           <UBadge v-if="issue.status === 'open'" color="primary" label="open" />
-          <UBadge  v-if="issue.status === 'closed'" color="red" label="closed" />
+          <div class="inline-flex gap-2 items-center"  v-if="issue.status === 'closed'">
+            <UBadge color="red" label="closed" />
+            <span>@ {{ 
+              new Date(issue.resolvedAt.toDate()).toLocaleDateString(undefined, {year: 'numeric', month: 'long', day: 'numeric'})
+            }} </span>
+          </div>
         </div>
         <p>Opened on {{
           new Date(issue.createdAt.toDate()).toLocaleDateString(undefined, {year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric'})}}
