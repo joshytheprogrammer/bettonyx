@@ -93,8 +93,7 @@ async function addComment() {
     createdAt: Timestamp.now()
   })
   .then(() => {
-    comment.value = '';
-    scrollToBottom();
+    nextTick(() => scrollToBottom());
   })
   .catch((error) => {
     console.error({ code: error.code, message: error.message });
@@ -121,10 +120,6 @@ function scrollToBottom() {
     commentsContainer.value.scrollTop = commentsContainer.value.scrollHeight;
   }
 }
-
-const sortedComments = computed(() => {
-  return comments.value.sort((a, b) => a.createdAt.toDate() - b.createdAt.toDate());
-});
 
 const groupedComments = computed(() => groupCommentsByDate(comments.value));
 </script>
