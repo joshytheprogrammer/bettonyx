@@ -26,6 +26,13 @@
 <script setup lang="ts">
 const items = [
   {
+    imgLink: 'https://res.cloudinary.com/dsgvwxygr/image/upload/f_auto,q_auto/v1/eaglebet/wcymb0uevynkaabwo7j9',
+    name: 'Image 8',
+    desc: 'Description for image 1',
+    ctaTitle: 'Click Here',
+    ctaLink: '#'
+  },
+  {
     imgLink: 'https://res.cloudinary.com/dsgvwxygr/image/upload/e_improve,e_sharpen,c_scale,h_1200,q_auto:best/v1717559845/eaglebet/2_bznzhy.webp',
     name: 'Image 1',
     desc: 'Description for image 1',

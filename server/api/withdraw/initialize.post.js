@@ -24,7 +24,7 @@ export default defineEventHandler(async (event) => {
     }
 
     const userBalance = userData.balance;
-    const withdrawalAmount = amount; // Convert to kobo
+    const withdrawalAmount = amount; 
 
     // Check if the amount is greater than the user's balance
     if (withdrawalAmount > userBalance) {
@@ -34,9 +34,9 @@ export default defineEventHandler(async (event) => {
     // Initiate the transfer
     const params = {
       source: "balance",
-      amount: withdrawalAmount* 100,
+      amount: withdrawalAmount * 100, // convert to kobo
       recipient: code,
-      reason: "Withdrawal from BettonyX",
+      reason: "Withdrawal from BettonyX by " + uid,
       currency: "NGN",
       reference: reference
     };

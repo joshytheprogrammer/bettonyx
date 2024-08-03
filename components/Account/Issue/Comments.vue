@@ -16,7 +16,7 @@
       </div>
       <p v-else class="text-xs md:text-sm font-medium my-4 mx-auto text-white px-2 py-1 rounded-md w-fit bg-gray-600">No comments yet</p>
     </div>
-    <form class="flex text-xs md:text-sm mt-4" @submit.prevent="addComment" v-if="routeStatus === 'open' && !loading"  >
+    <form class="flex text-xs md:text-sm mt-4" @submit.prevent="addComment" v-show="routeStatus === 'open' && !loading"  >
       <input 
         type="text" 
         v-model="comment" 
@@ -55,13 +55,16 @@ const unsubscribe = onSnapshot(
   ),
   (snapshot) => {
     const newComments = [];
+
     snapshot.forEach((doc) => {
       newComments.push({
         id: doc.id,
         ...doc.data()
       });
     });
+
     comments.value = newComments.sort((a, b) => a.createdAt.toDate() - b.createdAt.toDate());
+
     loading.value = false;
   },
   (error) => {
@@ -85,10 +88,12 @@ async function addComment() {
     return;
   }
 
+  let comm = comment.value
+  comment.value = ''
 
   await addDoc(collection(db, 'issue_comments'), {
     issue_id: id,
-    comment: comment.value,
+    comment: comm,
     isAdmin: false,
     createdAt: Timestamp.now()
   })
