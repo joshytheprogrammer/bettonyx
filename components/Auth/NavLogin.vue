@@ -4,7 +4,7 @@
       <input class="w-60 px-1 lg:px-2 h-10 outline-none border-0 rounded-md shadow-sm  ring-1 ring-inset ring-gray-300 dark:ring-gray-800 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-800 sm:text-sm sm:leading-6" type="text" placeholder="Phone" v-model="user.phone" @focusout="validate">
       <div class="inline-flex items-center" >
         <input class="w-50 px-1 lg:px-2 h-10 outline-none border-0 rounded-tl-md rounded-bl-md shadow-sm ring-1 ring-inset ring-gray-300  dark:ring-gray-800 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-800 sm:text-sm sm:leading-6" type="password" placeholder="Password" v-model="user.password" @focusout="validate" @keyup="validate">
-        <button type="submit" class="inline-flex justify-center items-center bg-secondary-900 w-20 text-white font-semibold hover:ring-gray-300 text-center  h-10 rounded-tr-md rounded-br-md" :disabled="loading || !validated">
+        <button type="submit" class="inline-flex justify-center items-center bg-primary-900 w-20 text-white font-semibold hover:ring-gray-300 text-center  h-10 rounded-tr-md rounded-br-md" :disabled="loading || !validated">
           <svg v-if="loading"
               class="animate-spin h-5 w-5 text-white"
               xmlns="http://www.w3.org/2000/svg"
@@ -30,7 +30,7 @@
       </div>
     </div>
     <div>
-      <button class=" block text-center w-20 h-10 bg-secondary-800 text-white font-semibold  rounded-md">
+      <button class=" block text-center w-20 h-10 bg-primary-950 text-white font-semibold  rounded-md">
         <NuxtLink to="/register">Register</NuxtLink>
       </button>
     </div>
