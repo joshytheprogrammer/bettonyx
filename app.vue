@@ -7,6 +7,7 @@
       <NuxtPage  />
     </main>
     <UNotifications />
+    <AppFooterAttribution />
   </div>
 </template>
 
