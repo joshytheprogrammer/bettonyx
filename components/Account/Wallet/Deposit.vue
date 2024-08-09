@@ -3,12 +3,14 @@
     <h2 class="md:text-2xl text-lg font-medium leading-9 tracking-tight ">Deposit Slip</h2>
     <div class="py-4">
       <form v-if="!verify" class="flex flex-col gap-4" @submit.prevent="submit">
-        <p>All deposits have been temporarily frozen. You can still withdraw your funds.</p>
-        <!-- <UInput class="text-xs" type="text" placeholder="Enter deposit amount" v-model="amount" /> -->
-        <div class="flex justify-between items-center">
-          <UButton :loading="loading" class="bg-primary-900 w-fit py-4 px-5 md:py-2 md:px-3 "type="submit">Deposit</UButton>
-          <NuxtLink to="/account/my/wallet" class="text-red-400 underline text-sm" >Close</NuxtLink>
-        </div>
+        <p v-if="frozen" class="bg-yellow-600 dark:bg-yellow-800 text-white px-2 py-2 text-xl md:text-sm rounded-md" >Depositing has been temporarily frozen. You can still withdraw your funds.</p>
+        <template v-else>
+          <UInput class="text-xs" type="text" placeholder="Enter deposit amount" v-model="amount" />
+          <div class="flex justify-between items-center">
+            <UButton :loading="loading" class="bg-primary-900 w-fit py-4 px-5 md:py-2 md:px-3 "type="submit">Deposit</UButton>
+            <NuxtLink to="/account/my/wallet" class="text-red-400 underline text-sm" >Close</NuxtLink>
+          </div>
+        </template>
       </form>
       <div class="w-full space-y-4" v-else>
         <p class="bg-primary-600 dark:bg-primary-800 text-white px-2 py-2 text-xl md:text-sm rounded-md" v-if="!errorMessage" >If your verification is taking too long. Contact customer support with this ID <code>{{route.query.reference}}</code></p>
@@ -56,6 +58,8 @@ const amount  = ref('');
 const loading = ref(false);
 const verify = ref(false);
 const depositAmount = ref(null); 
+
+const frozen = ref(true)
 
 const { generateTransactionReference } = useCreateUtilities();
 
