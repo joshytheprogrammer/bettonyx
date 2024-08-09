@@ -59,7 +59,7 @@ const loading = ref(false);
 const verify = ref(false);
 const depositAmount = ref(null); 
 
-const frozen = ref(true)
+const frozen = ref(false)
 
 const { generateTransactionReference } = useCreateUtilities();
 
