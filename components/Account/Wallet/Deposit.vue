@@ -3,7 +3,8 @@
     <h2 class="md:text-2xl text-lg font-medium leading-9 tracking-tight ">Deposit Slip</h2>
     <div class="py-4">
       <form v-if="!verify" class="flex flex-col gap-4" @submit.prevent="submit">
-        <UInput class="text-xs" type="text" placeholder="Enter deposit amount" v-model="amount" />
+        <p>All deposits have been temporarily frozen. You can still withdraw your funds.</p>
+        <!-- <UInput class="text-xs" type="text" placeholder="Enter deposit amount" v-model="amount" /> -->
         <div class="flex justify-between items-center">
           <UButton :loading="loading" class="bg-primary-900 w-fit py-4 px-5 md:py-2 md:px-3 "type="submit">Deposit</UButton>
           <NuxtLink to="/account/my/wallet" class="text-red-400 underline text-sm" >Close</NuxtLink>
