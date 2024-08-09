@@ -90,29 +90,39 @@ const db = useFirestore();
 const event = reactive({});
 const loading = ref(false);
 
+useSeoMeta({
+  title: () => `Bet on ${event.name} - BettonyX`,
+  description: () => `Place your bets on ${event.name} at BettonyX. Choose your winning team, enter your stake, and see your potential payout instantly.`,
+  ogTitle: () => `Bet on ${event.name} - BettonyX`,
+  ogDescription: () => `Join the excitement at BettonyX and bet on ${event.name}. Select your team, set your stake, and watch the game unfold!`,
+  ogImage: 'https://res.cloudinary.com/dsgvwxygr/image/upload/v1723121262/eaglebet/nkvv4sumpixjo15bchr1.jpg',
+  ogUrl: () => `https://bettonyx.com/events/${event.id}`,
+  twitterTitle: () => `Bet on ${event.name} - BettonyX`,
+  twitterDescription: () => `Bet on ${event.name} at BettonyX. Pick your team, place your bet, and win big on this exciting event!`,
+  twitterImage: 'https://res.cloudinary.com/dsgvwxygr/image/upload/v1723121262/eaglebet/nkvv4sumpixjo15bchr1.jpg',
+  twitterCard: 'summary'
+});
+
+
 let selectedTeam = reactive({});
 const amount = ref('');
 const potentialPayout = computed(() => parseFloat(amount.value) * parseFloat(selectedTeam.odds));
 
 const id = route.params.id;
 
-async function fetchEventData() {
-  try {
-    loading.value = true;
-    const docSnap = await getDoc(doc(db, 'events', id));
-    if (docSnap.exists()) {
-      Object.assign(event, { id: docSnap.id, ...docSnap.data() });
-    } else {
-      console.error("No such document!");
-    }
-  } catch (error) {
-    console.error("Error fetching document: ", error);
-  } finally {
-    loading.value = false;
+try {
+  loading.value = true;
+  const docSnap = await getDoc(doc(db, 'events', id));
+  if (docSnap.exists()) {
+    Object.assign(event, { id: docSnap.id, ...docSnap.data() });
+  } else {
+    console.error("No such document!");
   }
+} catch (error) {
+  console.error("Error fetching document: ", error);
+} finally {
+  loading.value = false;
 }
-
-await fetchEventData();
 
 async function placeEventBet() {
   loading.value = true;
