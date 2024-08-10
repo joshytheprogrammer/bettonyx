@@ -69,7 +69,7 @@
             </span>
           </div>
         </div>
-        <div class="py-4">
+        <div class="py-4" v-show="userIsActive">
           <NuxtLink v-if="!userStore.isAuthenticated" to="/login" class="block bg-primary-800 text-center w-full rounded-md text-white py-2 text-sm">Sign in to Place Bet</NuxtLink>
           <UButton v-else :loading="loading" :disabled="loading" class="bg-primary-800 flex items-center justify-center hover:bg-primary-900 text-center w-full rounded-md text-white py-4 md:py-2 text-sm" @click="placeEventBet">Place Event Bet</UButton>
         </div>
@@ -89,6 +89,8 @@ const toast = useToast();
 const db = useFirestore();
 const event = reactive({});
 const loading = ref(false);
+
+const userIsActive = ref(userStore.getUserData.status === 'active');
 
 useSeoMeta({
   title: () => `Bet on ${event.name} - BettonyX`,

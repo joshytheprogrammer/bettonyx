@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col w-full gap-4" >
+  <div class="flex flex-col w-full gap-4" v-show="userIsActive">
     <div class="  " v-if="withdrawalMethod === 'Manual'">
         <p class="bg-yellow-600 dark:bg-yellow-800 text-white px-2 py-2 text-xs md:text-sm rounded-md" >
           Your withdrawal request will be processed manually. It will be submitted to our customer service team, and the corresponding amount will be deducted from your account balance. You can expect to receive your transfer within 24 hours.
@@ -58,6 +58,7 @@ const amount  = ref('');
 const loading = ref(true);
 
 const withdrawalMethod = ref('Manual'); //Automatic
+const userIsActive = ref(userStore.getUserData.status === 'active');
 
 const { generateTransactionReference } = useCreateUtilities();
 
