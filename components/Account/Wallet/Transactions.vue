@@ -101,6 +101,8 @@ function getItemTitle(item) {
       return "Bet Hold";
     case "bet_payout":
       return "Bet Payout";
+    case "bet_forfeit":
+      return "Bet Forfeit";
     default:
       return "";
   }
@@ -113,7 +115,7 @@ function getAmountClass(item) {
 }
 
 function getAmountSign(item) {
-  return item.type === "deposit" || item.type === "bet_payout" ? "+" : "-";
+  return item.type === "deposit" || item.type === "bet_payout" ||  item.type === "bet_forfeit" ? "+" : "-";
 }
 </script>
 
