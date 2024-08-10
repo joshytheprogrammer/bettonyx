@@ -100,7 +100,7 @@ await getDoc(doc(db, 'users', uid))
 });
 
 onMounted(async () => {
-  await userStore.setUserData({email: user.email, phone: user.phone})
+  await userStore.setUserData({email: user.email, phone: user.phone, status: user.status})
 })
 
 function enableField(field) {

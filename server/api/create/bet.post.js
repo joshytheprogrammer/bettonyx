@@ -75,9 +75,16 @@ export default defineEventHandler(async (event) => {
       if (!userDoc.exists) {
         throw new Error("User does not exist");
       }
+
       const userBalance = userDoc.data().balance;
+      const userStatus = userDoc.data().status; // active, frozen, suspended
+
       if (userBalance < betAmount) {
         throw new Error("Insufficient balance");
+      }
+
+      if(userStatus != 'active') {
+        throw new Error("Betting temporarily disabled");
       }
       
       const newBalance = userBalance - betAmount;

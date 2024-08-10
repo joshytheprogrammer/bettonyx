@@ -4,7 +4,8 @@ export const useUserStore = defineStore('user', {
   state: () => ({ 
     user: {
       email: useCookie('user').value?.email,
-      phone: useCookie('user').value?.phone
+      phone: useCookie('user').value?.phone,
+      status:  useCookie('user').value?.status
     },
     userBalance: 0,
     auth: {
@@ -36,6 +37,7 @@ export const useUserStore = defineStore('user', {
       this.auth.isAuthenticated = false
       this.user.email = null
       this.user.phone = null
+      this.user.status = null
       this.userBalance = 0
     }
   },
