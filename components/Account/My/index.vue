@@ -60,7 +60,7 @@
             class="block w-full rounded-md border-0 py-1.5 pl-1.5 pr-20 text-black dark:text-white shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-800 text-xs sm:text-sm sm:leading-6 disabled:cursor-not-allowed" />
         </div>
       </div>
-      <button type="submit" class="text-xs rounded-md md:text-sm p-4 md:p-2 bg-primary-700 text-white dark:bg-primary-800 ">Update</button>
+      <button v-show="userIsActive" type="submit" class="text-xs rounded-md md:text-sm p-4 md:p-2 bg-primary-700 text-white dark:bg-primary-800 ">Update</button>
     </form>
   </div>
 </template>
@@ -84,9 +84,10 @@ let disabledFields = reactive({
   lastName: true
 });
 
-const uid = userStore.getUser.uid;
+const uid = ref(userStore.getUser.uid);
+const userIsActive = ref(userStore.getUserData.status === 'active');
 
-await getDoc(doc(db, 'users', uid))
+await getDoc(doc(db, 'users', uid.value))
 .then((doc) => {
   const { role, createdAt, ...rest } = doc.data();
   user = {id: doc.id, ...rest}
@@ -100,7 +101,7 @@ await getDoc(doc(db, 'users', uid))
 });
 
 onMounted(async () => {
-  await userStore.setUserData({email: user.email, phone: user.phone})
+  await userStore.setUserData({email: user.email, phone: user.phone, status: user.status})
 })
 
 function enableField(field) {
@@ -119,7 +120,7 @@ async function update() {
 
   loading.value = true
   
-  await updateDoc(doc(db, "users", uid), {
+  await updateDoc(doc(db, "users", uid.value), {
     firstName: user.firstName,
     lastName: user.lastName
   })

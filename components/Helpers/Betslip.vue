@@ -53,7 +53,7 @@
           </span>
         </div>
       </div>
-      <div class="py-4">
+      <div class="py-4" v-show="userIsActive">
         <NuxtLink v-if="!userStore.isAuthenticated" to="/login" class="block bg-primary-800 text-center w-full rounded-md text-white py-2 text-sm">Sign in to Place Bet</NuxtLink>
         <UButton v-else :loading="loading" :disabled="loading" class="bg-primary-800 flex items-center justify-center hover:bg-primary-900 text-center w-full rounded-md text-white py-2 text-sm" @click="placeBet">Place Bet</UButton>
       </div>
@@ -80,6 +80,8 @@ const router = useRouter();
 const toast = useToast();
 
 const uid = userStore.getUser.uid;
+const userIsActive = ref(userStore.getUserData.status === 'active');
+
 const totalOdds = computed(() => betslipStore.totalOdds);
 const potentialPayout = computed(() => betslipStore.potentialPayout);
 

@@ -14,8 +14,15 @@ export default defineEventHandler(async (event) => {
     const userDoc = await db.collection('users').doc(uid).get();
 
     if (!userDoc.exists) {
-      return new Response(JSON.stringify({ error: 'User not found' }), { status: 404 });
+      throw new Error("User does not exist");
     }
+
+    const userStatus = userDoc.data().status; // active, frozen, suspended
+
+    if(userStatus != 'active') {
+      throw new Error("Deposits temporarily disabled");
+    }
+      
 
     //* Get payment data from Paystack
     const paystackResponse = await fetch(`https://api.paystack.co/transaction/verify/${ref}`, {

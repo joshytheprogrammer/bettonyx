@@ -19,7 +19,7 @@
           </button>
         </div>
       </div>
-      <AccountHelpersNewAccountLink />
+      <AccountHelpersNewAccountLink v-show="userIsActive" />
     </div>
   </div>
 </template>
@@ -36,6 +36,8 @@ const loading = ref(true);
 const error = ref(false);
 
 const uid = userStore.getUser.uid;
+const userIsActive = ref(userStore.getUserData.status === 'active');
+
 const withdrawal_accounts = ref([]);
 
 try {

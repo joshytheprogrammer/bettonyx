@@ -17,7 +17,7 @@
       </button>
     </UTooltip>
     </div>
-    <div class="flex justify-between items-center gap-8 text-sm font-semibold">
+    <div class="flex justify-between items-center gap-8 text-sm font-semibold" v-show="userIsActive">
       <NuxtLink class="bg-white rounded-md px-4 md:py-2 py-4  text-primary-900 " to="?action=deposit">Fund Account</NuxtLink>
       <NuxtLink class="text-white" to="?action=withdraw" >Withdraw</NuxtLink>
     </div>
@@ -34,6 +34,8 @@ import {
 const db = useFirestore();
 const userStore = useUserStore();
 const loading = ref(false);
+
+const userIsActive = ref(userStore.getUserData.status === 'active');
 
 if (userStore.isAuthenticated) {
   await getBalance();

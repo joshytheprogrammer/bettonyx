@@ -73,7 +73,16 @@ const loadMatches = async () => {
       });
     }
 
-    groupedMatches.value = groupByDate(matches.value);
+    groupedMatches = groupByDate(matches.value);
+
+    // Convert groupedMatches object to an array and sort by date
+    groupedMatches = Object.keys(groupedMatches)
+      .sort((a, b) => new Date(a) - new Date(b))
+      .reduce((acc, date) => {
+        acc[date] = groupedMatches[date];
+        return acc;
+      }, {});
+
   } catch (e) {
     console.log(e);
   } finally {
@@ -81,7 +90,7 @@ const loadMatches = async () => {
   }
 };
 
-const groupedMatches = ref({});
+let groupedMatches = reactive({})
 
 function reverseEngineerID(generatedID) {
   const namePart = generatedID.replace(/-[\da-f]+$/, "").split("-");

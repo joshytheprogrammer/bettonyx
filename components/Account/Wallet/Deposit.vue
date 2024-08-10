@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-col pt-4" >
+  <div class="flex flex-col pt-4" v-show="userIsActive">
     <h2 class="md:text-2xl text-lg font-medium leading-9 tracking-tight ">Deposit Slip</h2>
     <div class="py-4">
       <form v-if="!verify" class="flex flex-col gap-4" @submit.prevent="submit">
-        <p v-if="frozen" class="bg-yellow-600 dark:bg-yellow-800 text-white px-2 py-2 text-xl md:text-sm rounded-md" >Depositing has been temporarily frozen. You can still withdraw your funds.</p>
+        <p v-if="depositIsFrozen" class="bg-yellow-600 dark:bg-yellow-800 text-white px-2 py-2 text-xl md:text-sm rounded-md" >Depositing has been temporarily frozen. You can still withdraw your funds.</p>
         <template v-else>
           <UInput class="text-xs" type="text" placeholder="Enter deposit amount" v-model="amount" />
           <div class="flex justify-between items-center">
@@ -59,7 +59,8 @@ const loading = ref(false);
 const verify = ref(false);
 const depositAmount = ref(null); 
 
-const frozen = ref(false)
+const depositIsFrozen = ref(false);
+const userIsActive = ref(userStore.getUserData.status === 'active');
 
 const { generateTransactionReference } = useCreateUtilities();
 

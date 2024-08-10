@@ -31,6 +31,12 @@ export default defineEventHandler(async (event) => {
       return new Response("Insufficient balance", { status: 400 });
     }
 
+    const userStatus = userData.status; // active, frozen, suspended
+
+    if(userStatus != 'active') {
+      throw new Error("Withdrawals temporarily disabled");
+    }
+
     // Initiate the transfer
     const params = {
       source: "balance",
