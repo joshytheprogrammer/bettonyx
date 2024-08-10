@@ -2,6 +2,28 @@
   <div>
     <AppNavBar />
     <AppNavMBar />
+    <div class="max-w-[70%] mx-auto my-4 px-4">
+      <UNotification 
+      :ui="{
+        background: 'bg-yellow-400 dark:bg-yellow-700'
+      }"
+      v-if="userStatus === 'frozen'"
+      title="Your account has been frozen. Please contact customer support to identify and resolve any pending issues." 
+      :id="1" 
+      :timeout="0" 
+      :close-button="{disabled: true}" 
+      />
+      <UNotification 
+      :ui="{
+        background: 'bg-red-500 dark:bg-red-900'
+      }"
+      v-if="userStatus === 'suspended'"
+      title="Your account has been suspended. Please contact customer support to obtain more information regarding the suspension." 
+      :id="1" 
+      :timeout="0" 
+      :close-button="{disabled: true}" 
+      />
+    </div>
     <main class="">
       <NuxtLoadingIndicator color="#76dbff" :height="4" />
       <NuxtPage  />
@@ -12,6 +34,8 @@
 </template>
 
 <script setup>
+import { useUserStore } from "@/store/user";
+
 useSeoMeta({
   title: 'BettonyX - The Premier Betting Site for Covenant University',
   description: 'BettonyX is the ultimate betting platform for Covenant University students and non-students, offering opportunities to bet on all games played within CU.',
@@ -37,4 +61,8 @@ useHead({
     }
   ]
 });
+
+const userStore = useUserStore();
+const userStatus = ref(userStore.getUserData.status);
+
 </script>
