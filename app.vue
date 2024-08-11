@@ -39,6 +39,7 @@ import { useUserStore } from "@/store/user";
 useSeoMeta({
   title: 'BettonyX - The Premier Betting Site for Covenant University',
   description: 'BettonyX is the ultimate betting platform for Covenant University students and non-students, offering opportunities to bet on all games played within CU.',
+  keywords: 'Covenant University, betting, sports, events, swep 2024, BettonyX, sports betting, odds, bettony, Bettony',
   ogTitle: 'BettonyX - The Premier Betting Site for Covenant University',
   ogDescription: 'Join BettonyX and place your bets on a variety of games within Covenant University. Open to both students and non-students.',
   ogImage: 'https://res.cloudinary.com/dsgvwxygr/image/upload/v1723121262/eaglebet/nkvv4sumpixjo15bchr1.jpg',
