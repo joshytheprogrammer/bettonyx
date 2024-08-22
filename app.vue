@@ -2,7 +2,7 @@
   <div>
     <AppNavBar />
     <AppNavMBar />
-    <div class="max-w-[70%] mx-auto my-4 px-4">
+    <!-- <div class="max-w-[70%] mx-auto my-4 px-4">
       <UNotification 
       :ui="{
         background: 'bg-yellow-400 dark:bg-yellow-700'
@@ -23,10 +23,20 @@
       :timeout="0" 
       :close-button="{disabled: true}" 
       />
-    </div>
+    </div> -->
     <main class="">
       <NuxtLoadingIndicator color="#76dbff" :height="4" />
-      <NuxtPage  />
+      <!-- <NuxtPage  /> -->
+      <div class="max-w-[80%] space-y-4 px-4">
+        <p>We wish to inform you that BettonyX will be temporarily suspending all operations effective immediately as we work diligently to secure both a betting license and a Mobile Money Operator (MMO) license. These licenses are crucial for compliance with regulatory requirements, and without them, we are unable to process deposits through our payment provider, Paystack.</p>
+        <p>We deeply appreciate your continued support and understanding during this period. Please rest assured that we are committed to resuming operations as swiftly as possible. You will be promptly notified via email as soon as we are able to reinstate payment services.</p>
+        <p>Thank you for your patience and loyalty to BettonyX.</p>
+      </div>
+      
+
+
+
+
     </main>
     <UNotifications />
     <AppFooterAttribution />
