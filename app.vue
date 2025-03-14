@@ -6,12 +6,6 @@
     <main class="">
       <NuxtLoadingIndicator color="#76dbff" :height="4" />
       <NuxtPage  />
-      <!-- <div class="max-w-[80%] space-y-4 px-4 py-4">
-        <p>We wish to inform you that BettonyX will be temporarily suspending all operations effective immediately as we work diligently to secure both a betting license and a Mobile Money Operator (MMO) license. These licenses are crucial for compliance with regulatory requirements, and without them, we are unable to process deposits through our payment provider, Paystack.</p>
-        <p>We deeply appreciate your continued support and understanding during this period. Please rest assured that we are committed to resuming operations as swiftly as possible. You will be promptly notified via email as soon as we are able to reinstate payment services.</p>
-        <p>Thank you for your patience and loyalty to BettonyX.</p>
-      </div> -->
-      
     </main>
     <UNotifications />
     <AppFooterAttribution />
